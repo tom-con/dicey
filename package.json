@@ -1,23 +1,26 @@
 {
-  "name": "dicey",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "angular": "^1.6.4",
-    "angular-ui-router": "^1.0.3",
-    "body-parser": "~1.16.0",
-    "bootstrap": "^3.3.7",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.0",
-    "express": "~4.14.1",
-    "jade": "~1.11.0",
-    "jquery": "^3.2.1",
-    "knex": "^0.13.0",
-    "morgan": "~1.7.0",
-    "pg": "^6.2.2",
-    "serve-favicon": "~2.3.2"
-  }
+    "name": "dicey",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "gulp",
+        "nodemon": "node server/app.js"
+    },
+    "dependencies": {
+        "angular": "^1.6.4",
+        "angular-ui-router": "^1.0.3",
+        "body-parser": "~1.16.0",
+        "bootstrap": "^3.3.7",
+        "browser-sync": "^2.18.11",
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.6.0",
+        "express": "~4.14.1",
+        "gulp": "^3.9.1",
+        "gulp-nodemon": "^2.2.1",
+        "jquery": "^3.2.1",
+        "knex": "^0.13.0",
+        "morgan": "~1.7.0",
+        "pg": "^6.2.2",
+        "serve-favicon": "~2.3.2"
+    }
 }
