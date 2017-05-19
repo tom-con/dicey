@@ -6,8 +6,23 @@
       templateUrl: './js/content/content.html'
     })
 
-    function controller(){
+    controller.$inject = ['contentService']
+
+    function controller(contentService){
       const vm = this
+      vm.$onInit = onInit
+
+      function onInit() {
+        getUsers()
+
+      }
+
+      function getUsers() {
+        contentService.getUsers().then(users => {
+          vm.users = users
+        })
+      }
     }
+
 
 }())
