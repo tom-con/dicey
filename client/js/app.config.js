@@ -17,13 +17,13 @@
       })
       .state('content', {
         name: 'content',
-        url: '/',
+        url: '/about',
         parent: 'layout',
         component: 'content'
       })
       .state('login', {
         name: 'login',
-        url: '/login',
+        url: '/',
         parent: 'layout',
         component: 'login'
       })

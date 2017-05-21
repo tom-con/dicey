@@ -4,13 +4,13 @@
   angular.module('app')
     .service('authService', service)
 
-  service.$inject = ['$http', '$rootScope', 'loginService']
+  service.$inject = ['$http', '$rootScope', 'loginService', '$state']
 
-  function service($http, $rootScope, loginService) {
+  function service($http, $rootScope, loginService, $state) {
     const sv = this
     sv.watchLoginChange = watchLoginChange
     sv.getUserInfo = getUserInfo
-    sv.logIn = logIn
+    sv.addPublish = addPublish
 
     function watchLoginChange() {
       var _self = this;
@@ -25,7 +25,7 @@
       });
     }
 
-    function logIn() {
+    function addPublish() {
       FB.login(function(response) {
         console.log(response);
       }, {
@@ -39,7 +39,6 @@
         $rootScope.$apply(function() {
           $rootScope.user = _self.user = res;
           loginService.updateUser(id, res).then(user => {
-            console.log(user);
           })
         });
       });

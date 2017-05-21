@@ -12,7 +12,6 @@
     sv.updateUser = updateUser
 
     function logIn(data) {
-      // $http.post('/api/users', )
     }
 
     function checkUser(user){
