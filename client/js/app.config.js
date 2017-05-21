@@ -17,9 +17,15 @@
       })
       .state('home', {
         name: 'home',
-        url: '/about',
+        url: '/home',
         parent: 'layout',
         component: 'home'
+      })
+      .state('new', {
+        name: 'new',
+        url: '/new',
+        parent: 'layout',
+        component: 'new'
       })
       .state('login', {
         name: 'login',
