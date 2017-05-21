@@ -6,16 +6,19 @@
       templateUrl: './js/login/login.html'
     })
 
-    controller.$inject = ['loginService', 'authService', '$rootScope']
+    controller.$inject = ['loginService', 'authService']
 
-    function controller(loginService, authService, $rootScope){
+    function controller(loginService, authService){
       const vm = this
       vm.$onInit = onInit
+      vm.logIn = logIn
+
+      function logIn() {
+        authService.logIn()
+      }
 
       function onInit() {
-        vm.user = $rootScope.user
-        vm.authorized= $rootScope.authorized
-        console.log(vm.user, vm.authorized);
+
       }
 
     }
