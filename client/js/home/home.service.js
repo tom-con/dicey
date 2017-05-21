@@ -2,7 +2,7 @@
   'use strict'
 
   angular.module('app')
-    .service('contentService', service)
+    .service('homeService', service)
 
   service.$inject = ['$http']
   function service($http) {

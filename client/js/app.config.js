@@ -15,11 +15,11 @@
         abstract: true,
         component: 'layout',
       })
-      .state('content', {
-        name: 'content',
+      .state('home', {
+        name: 'home',
         url: '/about',
         parent: 'layout',
-        component: 'content'
+        component: 'home'
       })
       .state('login', {
         name: 'login',

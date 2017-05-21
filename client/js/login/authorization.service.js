@@ -39,6 +39,7 @@
         $rootScope.$apply(function() {
           $rootScope.user = _self.user = res;
           loginService.updateUser(id, res).then(user => {
+            $state.go('home')
           })
         });
       });
