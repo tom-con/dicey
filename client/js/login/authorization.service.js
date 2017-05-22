@@ -20,8 +20,7 @@
           loginService.checkUserExists(res)
             .then(user => user ? user : loginService.createUser(res))
             .then(user => {
-              // THIS IS WHERE WE SHOULD CREATE THE TOKEN???? <-------OPTION A
-              getUserInfo(user.id)
+              getUserInfo(user)
             })
         } else {
 
@@ -48,21 +47,15 @@
         FB.api('/1876037599325617', {
           "fields": "context.fields(friends_using_app)"
         }, function(res) {
-          if (res.error) {
-            reject(res.error)
-          }
-          else {
-            resolve(res.context.friends_using_app.data)
-          }
+          res.error ? reject(res.error) : resolve(res.context.friends_using_app.data)
         })
       })
     }
 
-    function getUserInfo(id) {
+    function getUserInfo() {
       var _self = this;
       FB.api('/me', function(res) {
-        loginService.updateUser(id, res).then(user => {
-          // THIS IS WHERE WE SHOULD CREATE THE TOKEN???? <-------OPTION B
+        loginService.updateUser(res).then(user => {
           $state.go('home')
         })
       });

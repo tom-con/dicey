@@ -1,15 +1,20 @@
-<form ng-submit="$ctrl.createGroup()">
-  <label>Group Name:<input type="text"></label><br>
-  <label>Word limit:<input type="text"></label><br>
-  <div ng-click="$ctrl.getFriends()" class="input-field col s12">
-  <select ng-if="$ctrl.friendsList">
-    <option value="" disabled selected>Choose your option</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-  </select>
-  <label>Invite Friends</label>
+<div class="container">
+  <div class="row">
+    <form novalidate ng-model="$ctrl.newgroup" ng-submit="$ctrl.createGroup()">
+      <label>Group Name:<input name="name" ng-model="$ctrl.form.name" type="text"></label><br>
+      <label>Word limit:<input name="word_limit" ng-model="$ctrl.form.word_limit" type="text"></label><br>
+
+      <a class="btn" ng-if="!$ctrl.friendsList" ng-click="$ctrl.getFriends()" class="input-field col s12">Invite Friends</a>
+
+      <div style="border: 1px solid black;">
+        <div ng-repeat="friend in $ctrl.friendsList">
+          <input ng-model="$ctrl.form.people[friend.id]" type="checkbox" class="filled-in" id="{{friend.id}}">
+          <label for="{{friend.id}}">{{friend.name}}</label>
+        </div>
+      </div>
+
+      <button class="btn" type="submit" ng-click="$ctrl.check($ctrl.friendsList)">Create!</button>
+    </form>
+    <div ng-repeat="friend in $ctrl.addedFriends">{{friend.name}}</div>
+  </div>
 </div>
-  <label>Profanity:<input type="checkbox"></label><br>
-  <button type="submit">Create!</button>
-</form>

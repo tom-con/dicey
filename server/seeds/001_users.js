@@ -4,10 +4,14 @@ exports.seed = function(knex, Promise) {
   return knex('users').del()
     .then(function () {
       // Inserts seed entries
-      return knex('users').insert([
-        {id: 1, name: 'Federique', fbid:'2'}
-      ]);
-    }).then(() => {
-      return knex.raw("SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));")
+      return knex('users').insert([{
+        fbid:'10158790617955387',
+      },{
+        fbid:'10210041946139899',
+      },{
+        fbid:'10105134444893173',
+      },{
+        fbid:'10207858351131656',
+      }]);
     });
 };
