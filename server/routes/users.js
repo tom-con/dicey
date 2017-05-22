@@ -11,26 +11,24 @@ router.get('/', function(req, res, next) {
     })
 });
 
-router.post('/', function(req, res, next) {
+
+router.get('/:uid', function(req, res, next) {
   knex('users')
-    .where('fbid', `${req.body.authResponse.userID}`)
-    .update({accessToken: req.body.authResponse.accessToken})
-    .returning('*')
+    .where('fbid', `${req.params.uid}`)
+    .first()
     .then(user => {
-      if (user[0]) {
-        res.send(user[0])
-      } else {
-        knex('users')
-          .insert({
-            fbid: req.body.authResponse.userID,
-            accessToken: req.body.authResponse.accessToken
-          }, '*')
-          .then(user => {
-            res.send(user[0])
-          })
-      }
+      res.send(user || false)
     })
 });
+
+router.post('/', function(req, res, next) {
+  let user = req.body.authResponse
+  knex('users')
+    .insert({fbid: user.userID, accessToken: user.accessToken}, '*')
+    .then(newUser => {
+      res.send(newUser)
+    })
+})
 
 router.patch('/:id', function(req, res, next) {
   knex('users')

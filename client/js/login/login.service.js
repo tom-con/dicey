@@ -7,17 +7,16 @@
   service.$inject = ['$http']
   function service($http) {
     const sv = this
-    sv.logIn = logIn
-    sv.checkUser = checkUser
+    sv.checkUserExists = checkUserExists
     sv.updateUser = updateUser
+    sv.createUser = createUser
 
-    function logIn(data) {
+    function checkUserExists(user){
+      return $http.get(`/api/users/${user.authResponse.userID}`).then(usr => usr.data ? usr.data : false)
     }
 
-    function checkUser(user){
-      return $http.post('/api/users', user).then(usr => {
-        return usr.data
-      })
+    function createUser(user){
+      return $http.post('/api/users', user).then(usr => usr.data[0])
     }
 
     function updateUser(id, data){

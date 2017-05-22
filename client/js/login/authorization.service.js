@@ -13,12 +13,14 @@
     sv.addPublish = addPublish
 
     function watchLoginChange() {
-      var _self = this;
       FB.Event.subscribe('auth.authResponseChange', function(res) {
         if (res.status === 'connected') {
-          loginService.checkUser(res).then(user => {
-            _self.getUserInfo(user.id);
-          })
+          loginService.checkUserExists(res)
+            .then(user => user ? user : loginService.createUser(res))
+            .then(user => {
+              // THIS IS WHERE WE SHOULD CREATE THE TOKEN???? <-------OPTION A
+              getUserInfo(user.id)
+            })
         } else {
 
         }
@@ -33,15 +35,21 @@
       });
     }
 
+    function getFriends() {
+      FB.login(function(response) {
+        console.log(response);
+      }, {
+        scope: 'user_friends'
+      });
+    }
+
     function getUserInfo(id) {
       var _self = this;
       FB.api('/me', function(res) {
-        $rootScope.$apply(function() {
-          $rootScope.user = _self.user = res;
-          loginService.updateUser(id, res).then(user => {
-            $state.go('home')
-          })
-        });
+        loginService.updateUser(id, res).then(user => {
+          // THIS IS WHERE WE SHOULD CREATE THE TOKEN???? <-------OPTION B
+          $state.go('home')
+        })
       });
     }
 
