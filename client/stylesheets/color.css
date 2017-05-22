@@ -1,0 +1,66 @@
+/**
+ * ===============================
+ *  Defult CSS
+ * ===============================
+ */
+body {
+  color: #686868;
+  background-color: rgb(10, 10, 10);
+}
+p {
+  color: #686868;
+}
+/*
+ * ====================================
+ * Gradient Text and border Color
+ * ====================================
+ */
+.gradient-text {
+  background-image: -webkit-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -ms-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -o-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+}
+.gradient-text-full {
+  background-image: -webkit-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -ms-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -o-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+}
+.gradient-border::before {
+  background-image: linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -webkit-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -moz-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -ms-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -o-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+}
+.gradient-border::after {
+  background-color: #ffffff;
+}
+/**
+ * ===============================
+ *  Section Top and Bottom padding
+ * ===============================
+ */
+.section-separator-line {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+/**
+ * ====================================
+ * Background Overlay Color
+ * ====================================
+ */
+.overlay-color {
+  background-image: linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -webkit-linear-gradient(150deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -moz-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -ms-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -o-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  /* 15% transparency */
+}
+.overlay-color-full {
+  background-image: linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -webkit-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -moz-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -ms-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  background-image: -o-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
+  /* 0% transparency */
+}

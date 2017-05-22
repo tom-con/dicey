@@ -1,0 +1,274 @@
+/**
+ * ===============================
+ *  Defult CSS
+ * ===============================
+ */
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  font-style: none;
+  font-weight: 500;
+  overflow-x: hidden !important;
+  text-align: left;
+  position: relative;
+}
+a {
+  text-decoration: none !important;
+  display: inline-block;
+  cursor: pointer;
+  font-family: 'Source Sans Pro', sans-serif;
+  -webkit-transition: all 0.4s ease-out;
+  -moz-transition: all 0.4s ease-out;
+  -o-transition: all 0.4s ease-out;
+  -ms-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a:focus {
+  outline: 0 !important;
+}
+
+p {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  margin-bottom: 28px;
+  font-weight: 400;
+}
+/* Heading Style */
+h1 {
+  font-size: 65px;
+  line-height: 95px;
+  font-weight: 300;
+}
+h2 {
+  font-size: 55px;
+  line-height: 85px;
+  font-weight: 300;
+}
+h3 {
+  font-size: 25px;
+  line-height: 45px;
+  font-weight: 400;
+}
+h4 {
+  font-size: 22px;
+  line-height: 40px;
+  font-weight: 400;
+}
+h5 {
+  font-size: 20px;
+  line-height: 38px;
+  font-weight: 600;
+}
+h6 {
+  font-size: 16px;
+  line-height: 34px;
+  font-weight: 600;
+}
+
+/*=====================================
+                nav
+=====================================*/
+.navbar-nav>ul {
+    text-align: right;
+}
+
+.navbar-nav>li>a {
+  padding: 0;
+}
+
+/**
+ * ====================================
+ *  Every Section Headline Defult Class
+ * ====================================
+ */
+.section-heading {
+  display: inline-block;
+  padding-bottom: 0px;
+  margin: 0;
+}
+.section-header {
+  text-align: center;
+}
+.section-header .sub-title {
+  font-size: 17px;
+  line-height: 26px;
+  font-weight: 400;
+  margin: 0;
+}
+.section-header.text-left,
+.section-header.text-left * {
+  text-align: left;
+}
+.section-header.text-right,
+.section-header.text-right * {
+  text-align: right;
+}
+section.section {
+  position: relative;
+}
+
+/**
+ * ====================================
+ * Background Overlay Color
+ * ====================================
+ */
+.overlay-color {
+  position: relative;
+}
+.overlay-color-full {
+  position: relative;
+}
+
+/**
+ * =========================
+ * Form Style
+ * =========================
+ */
+.single-form {
+  width: 100%;
+  display: inline-table;
+}
+.single-form .form-control {
+  font-size: 15px;
+  border: 0px solid;
+  border-radius: 0;
+  box-shadow: 0 0 0 0 #fff;
+  height: 51px;
+  text-align: left;
+  margin-bottom: 20px;
+  padding: 0 15px;
+  -webkit-transition: all 0.4s ease-out;
+  -moz-transition: all 0.4s ease-out;
+  -o-transition: all 0.4s ease-out;
+  -ms-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.single-form textarea {
+  height: 175px !important;
+  padding: 10px 15px !important;
+}
+.single-form .select-outer {
+  position: relative;
+}
+.single-form .select-outer::after {
+  content: "";
+  position: absolute;
+  top: 19px;
+  right: 15px;
+  border-width: 7px 6px;
+  border-style: solid;
+}
+.single-form select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+.single-form .btn {
+  margin-top: 10px;
+}
+.single-form .form-group {
+  margin: 0px;
+}
+.single-form .p-right {
+  padding-left: 0px;
+}
+.single-form .p-left {
+  padding-right: 0px;
+}
+.single-form .m-right {
+  margin-right: 0px;
+}
+.single-form .m-left {
+  margin-left: 0px;
+}
+@media (max-width: 767px) {
+  h1,
+  h2 {
+    font-size: 45px;
+    line-height: 65px;
+    font-weight: 300;
+  }
+  /**
+     * ===============================
+     *  Defult CSS
+     * ===============================
+     */
+  html *,
+  body,
+  p {
+    text-align: center;
+  }
+
+  .section-header.text-left,
+  .section-header.text-right,
+  .section-header.text-left *,
+  .section-header.text-right * {
+    text-align: center;
+  }
+  /**
+     * ================================
+     * Nav Defult Style
+     * ================================
+     */
+  .nav {
+    display: inline-block;
+    text-align: right;
+  }
+
+}
+
+.gradient-text {
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+.gradient-text-full {
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+.gradient-border {
+  display: inline-block;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  z-index: 1;
+}
+.gradient-border::before,
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  border-radius: 50% 50% 50% 50%;
+  -webkit-border-radius: 50% 50% 50% 50%;
+  -moz-border-radius: 50% 50% 50% 50%;
+  -ms-border-radius: 50% 50% 50% 50%;
+  -o-border-radius: 50% 50% 50% 50%;
+}
+.gradient-border::before {
+  top: -2px;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
+  z-index: -2;
+}
+.gradient-border::after {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.vertical-middle {
+  display: table-cell;
+  float: none;
+  vertical-align: middle;
+}
