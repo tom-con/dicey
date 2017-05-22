@@ -1,10 +1,12 @@
-<h1 class="gradient-text-full section-header">Current Groups</h1>
-<div>
-<ul>
-  <li><span class="group-name">Bingo Kids</span> <span class="whos-turn">Ready for approval!</span> <span class="pos-turn"> 14/14</span></li>
-  <li><span class="group-name">Bleezelblorps</span> <span class="whos-turn">Your turn!</span> <span class="pos-turn"> 5/12</span></li>
-  <li><span class="group-name">East-side crew</span> <span class="whos-turn">Andy's turn!</span> <span class="pos-turn"> 13/16</span></li>
-</ul>
-</div>
+<div class="container">
+  <h2 class="gradient-text-full section-header center-align">Current Groups</h1>
+  <div class="row">
+    <div>
+      <ul>
+        <li ng-repeat="group in $ctrl.groups"><span class="group-name">{{group.name}}</span> <span class="whos-turn">Ready for approval!</span> <span class="pos-turn"> 14/14</span></li>
+      </ul>
+    </div>
 
-<button ui-sref="new">Start new group!</button>
+    <button class="btn" ui-sref="new">Start new group!</button>
+  </div>
+</div>

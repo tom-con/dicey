@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     .join('groups', 'users_groups.group_id', 'groups.id')
     .where('users_groups.user_id', user)
     .then(groups => {
-      console.log(groups);
+      res.send(groups)
     })
 })
 

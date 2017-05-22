@@ -10,10 +10,7 @@
     sv.getGroups = getGroups
 
     function getGroups(){
-      console.log("get in the service");
-      return $http.get(`/api/usersgroups`).then(groups => {
-        return groups.data
-      })
+      return $http.get(`/api/usersgroups`).then(groups => groups.data)
     }
 
   }

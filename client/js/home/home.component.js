@@ -15,7 +15,6 @@
       function onInit() {
         homeService.getGroups().then(groups => {
           vm.groups = groups
-          console.log(groups);
         })
       }
     }

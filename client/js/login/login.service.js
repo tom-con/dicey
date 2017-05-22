@@ -20,7 +20,6 @@
     }
 
     function updateUser(data){
-      console.log(data);
       return $http.patch(`/api/users/${data.id}`, data).then(usr => {
         return usr.data
       })

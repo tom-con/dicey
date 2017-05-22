@@ -1,13 +1,15 @@
 <div class="container">
+  <h2 class="gradient-text-full section-header center-align">New Group</h1>
+
   <div class="row">
     <form novalidate ng-model="$ctrl.newgroup" ng-submit="$ctrl.createGroup()">
       <label>Group Name:<input name="name" ng-model="$ctrl.form.name" type="text"></label><br>
       <label>Word limit:<input name="word_limit" ng-model="$ctrl.form.word_limit" type="text"></label><br>
 
-      <a class="btn" ng-if="!$ctrl.friendsList" ng-click="$ctrl.getFriends()" class="input-field col s12">Invite Friends</a>
+      <a class="btn" ng-click="$ctrl.showFriends = true" ng-if="!$ctrl.friendsList" class="input-field col s12">Invite Friends</a>
 
       <div style="border: 1px solid black;">
-        <div ng-repeat="friend in $ctrl.friendsList">
+        <div ng-if="$ctrl.showFriends" ng-repeat="friend in $ctrl.friendsList">
           <input ng-model="$ctrl.form.people[friend.id]" type="checkbox" class="filled-in" id="{{friend.id}}">
           <label for="{{friend.id}}">{{friend.name}}</label>
         </div>

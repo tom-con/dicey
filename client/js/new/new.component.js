@@ -18,18 +18,20 @@
 
     function onInit() {
       authService.friendsPermission()
+      vm.showFriends = false
       vm.addedFriends = []
       vm.selected = {}
+      vm.getFriends()
     }
 
     function getFriends() {
+      vm.form = {
+        name: '',
+        word_limit: 0,
+        people: {}
+      }
       authService.getFriends().then(res => {
         vm.friendsList = res
-        vm.form = {
-          name: '',
-          word_limit: 0,
-          people: {}
-        }
       })
     }
 
