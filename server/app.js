@@ -5,9 +5,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
 
+const users = require('./routes/users');
 const groups = require('./routes/groups');
 const usersgroups = require('./routes/usersgroups');
-const users = require('./routes/users');
 
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
@@ -16,10 +16,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/../client')))
 app.use(express.static(path.join(__dirname, '/../', 'node_modules')))
 
+app.use('/api/users', users);
 app.use('/api/groups', groups);
 app.use('/api/usersgroups', usersgroups);
-
-app.use('/api/users', users);
 
 app.use('*', function(req, res) {
   res.sendFile('index.html', {

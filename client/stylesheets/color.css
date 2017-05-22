@@ -68,7 +68,7 @@ p {
    float: none;
    vertical-align: middle;
  }
- 
+
 .gradient-text {
   background-image: -webkit-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
   background-image: -ms-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
@@ -117,4 +117,12 @@ p {
   background-image: -ms-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
   background-image: -o-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
   /* 0% transparency */
+}
+
+
+
+.group-box {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 10px;
 }

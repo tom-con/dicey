@@ -1,12 +1,14 @@
 <div class="container">
   <h2 class="gradient-text-full section-header center-align">Current Groups</h1>
   <div class="row">
-    <div>
+    <div class="col s10 l6 offset-s1 offset-l3">
+    <div class="group-box">
       <ul>
         <li ng-repeat="group in $ctrl.groups"><span class="group-name">{{group.name}}</span> <span class="whos-turn">Ready for approval!</span> <span class="pos-turn"> 14/14</span></li>
       </ul>
     </div>
-
-    <button class="btn" ui-sref="new">Start new group!</button>
+    <div class="row"></div>
+    <div class="center-align"><button class="btn overlay-color" ui-sref="new">Start new group!</button></div>
+  </div>
   </div>
 </div>
