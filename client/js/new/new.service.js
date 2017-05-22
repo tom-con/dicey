@@ -29,7 +29,7 @@
         user_id: person,
         group_id: data.group_id
       }).then(datum => {
-        console.log(datum);
+        return datum.data
       })))
     }
   }
