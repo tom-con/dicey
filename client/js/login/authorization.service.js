@@ -44,10 +44,17 @@
     }
 
     function getFriends() {
-      FB.api('/1876037599325617', {
-        "fields": "context.fields(friends_using_app)"
-      }, function(res) {
-        return res.context.friends_using_app.data
+      return new Promise(function (resolve, reject) {
+        FB.api('/1876037599325617', {
+          "fields": "context.fields(friends_using_app)"
+        }, function(res) {
+          if (res.error) {
+            reject(res.error)
+          }
+          else {
+            resolve(res.context.friends_using_app.data)
+          }
+        })
       })
     }
 
