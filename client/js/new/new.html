@@ -1,7 +1,15 @@
 <form ng-submit="$ctrl.createGroup()">
   <label>Group Name:<input type="text"></label><br>
   <label>Word limit:<input type="text"></label><br>
-  <label>Invite Friends:<input type="text"></label><br>
+  <div ng-click="$ctrl.getFriends()" class="input-field col s12">
+  <select>
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+  <label>Invite Friends</label>
+</div>
   <label>Profanity:<input type="checkbox"></label><br>
   <button type="submit">Create!</button>
 </form>
