@@ -2,7 +2,7 @@
   <label>Group Name:<input type="text"></label><br>
   <label>Word limit:<input type="text"></label><br>
   <div ng-click="$ctrl.getFriends()" class="input-field col s12">
-  <select>
+  <select ng-if="$ctrl.friendsList">
     <option value="" disabled selected>Choose your option</option>
     <option value="1">Option 1</option>
     <option value="2">Option 2</option>

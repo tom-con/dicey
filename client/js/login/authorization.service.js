@@ -12,6 +12,7 @@
     sv.getUserInfo = getUserInfo
     sv.addPublish = addPublish
     sv.getFriends = getFriends
+    sv.friendsPermission = friendsPermission
 
     function watchLoginChange() {
       FB.Event.subscribe('auth.authResponseChange', function(res) {
@@ -36,16 +37,18 @@
       });
     }
 
-    function getFriends() {
-      console.log("here");
-      FB.login(function(response) {
-        FB.api('/1876037599325617', {"fields": "context.fields(friends_using_app)"}, function(res) {
-          let contextId = res.context.id
-          console.log(res);
-        })
-      }, {
+    function friendsPermission() {
+      FB.login(function(response) {}, {
         scope: 'user_friends'
       });
+    }
+
+    function getFriends() {
+      FB.api('/1876037599325617', {
+        "fields": "context.fields(friends_using_app)"
+      }, function(res) {
+        return res.context.friends_using_app.data
+      })
     }
 
     function getUserInfo(id) {

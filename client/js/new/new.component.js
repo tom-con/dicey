@@ -14,11 +14,15 @@
       vm.getFriends = getFriends
 
       function onInit() {
+        authService.friendsPermission()
         $('select').material_select();
       }
 
       function getFriends(){
-        authService.getFriends()
+        authService.getFriends().then(res => {
+          console.log("here");
+          console.log(res);
+        })
       }
     }
 
