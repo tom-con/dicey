@@ -1,26 +1,29 @@
-<header class="navbar-fixed-top">
-  <div class="container">
-    <div class="row">
-
-      <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3">
-        <a class="light-logo" ui-sref="home"><img src="/images/diceylogoblack_v1.png" alt="" class="img-responsive"></a>
-      </div>
-
-      <div class="col-lg-10 col-md-9 col-sm-9 col-xs-6 offset-xs-3">
-        <nav role="navigation">
-          <ul id="navbar-nav" class="navbar-nav">
-            <li><a ui-sref="home">My groups</a></li>
-            <li><a ui-sref="new">New group</a></li>
-            <li><a ui-sref="about">How to play</a></li>
-          </ul>
-        </nav>
-      </div>
-
-    </div>
+<nav class="black">
+  <div class="nav-wrapper">
+    <a class="brand-logo" ui-sref="home"><img class="responsive-img" src="/images/diceylogoblack_v1_small.png"></a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a ui-sref="home">My groups</a></li>
+      <li><a ui-sref="new">New group</a></li>
+      <li><a ui-sref="about">How to play</a></li>
+    </ul>
+    <ul class="side-nav black" id="mobile-demo">
+      <li>
+        <div class="userView">
+          <div class="background">
+            <img src="/images/coverphoto.jpg">
+          </div>
+          <a href="https://www.facebook.com"><img class="circle" src="/images/profpic.jpg">
+          <span class="white-text name">Thomas Sunshine Conchie</span></a>
+          <span class="white-text name">I'm here to write words and fuck shit up... And I'm all out of words.</span>
+        </div>
+      </li>
+      <li><a class="white-text" ui-sref="home"><i class="gradient-text-full material-icons">group_work</i>My groups</a></li>
+      <li><a class="white-text" ui-sref="new"><i class="gradient-text-full material-icons">playlist_add</i>New group</a></li>
+      <li><a class="white-text" ui-sref="about"><i class="gradient-text-full material-icons">question_answer</i>How to play</a></li>
+      <li><a class="white-text" ui-sref="settings"><i class="gradient-text-full material-icons">settings</i>Settings</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 <div id="header-relief"></div>
 <ui-view></ui-view>
-<script>
-  $("header.navbar-fixed-top").autoHidingNavbar();
-</script>

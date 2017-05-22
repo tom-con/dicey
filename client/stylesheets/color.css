@@ -15,6 +15,60 @@ p {
  * Gradient Text and border Color
  * ====================================
  */
+
+ .gradient-text {
+   -moz-background-clip: text;
+   -webkit-background-clip: text;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+   -moz-text-fill-color: transparent;
+   text-fill-color: transparent;
+ }
+ .gradient-text-full {
+   -moz-background-clip: text;
+   -webkit-background-clip: text;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+   -moz-text-fill-color: transparent;
+   text-fill-color: transparent;
+ }
+ .gradient-border {
+   display: inline-block;
+   position: relative;
+   width: 70px;
+   height: 70px;
+   z-index: 1;
+ }
+ .gradient-border::before,
+ .gradient-border::after {
+   content: '';
+   position: absolute;
+   border-radius: 50% 50% 50% 50%;
+   -webkit-border-radius: 50% 50% 50% 50%;
+   -moz-border-radius: 50% 50% 50% 50%;
+   -ms-border-radius: 50% 50% 50% 50%;
+   -o-border-radius: 50% 50% 50% 50%;
+ }
+ .gradient-border::before {
+   top: -2px;
+   bottom: -2px;
+   left: -2px;
+   right: -2px;
+   z-index: -2;
+ }
+ .gradient-border::after {
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   z-index: -1;
+ }
+ .vertical-middle {
+   display: table-cell;
+   float: none;
+   vertical-align: middle;
+ }
+ 
 .gradient-text {
   background-image: -webkit-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
   background-image: -ms-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);

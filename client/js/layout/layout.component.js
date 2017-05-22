@@ -11,7 +11,7 @@
       vm.$onInit = onInit
 
       function onInit(){
-        
+        $(".button-collapse").sideNav();
       }
     }
 

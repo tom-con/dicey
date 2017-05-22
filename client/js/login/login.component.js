@@ -14,7 +14,7 @@
 
 
       function onInit() {
-        
+        $('.carousel').carousel();
       }
     }
 
