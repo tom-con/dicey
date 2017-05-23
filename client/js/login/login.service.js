@@ -10,6 +10,11 @@
     sv.checkUserExists = checkUserExists
     sv.updateUser = updateUser
     sv.createUser = createUser
+    sv.getUser = getUser
+
+    function getUser(userID) {
+      return $http.get(`/api/users/${userID}`).then(usr => usr.data ? usr.data : false)
+    }
 
     function checkUserExists(user){
       return $http.get(`/api/users/${user.authResponse.userID}`).then(usr => usr.data ? usr.data : false)

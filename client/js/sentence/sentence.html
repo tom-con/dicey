@@ -3,24 +3,14 @@
   <div class="row"></div>
   <div class="row">
     <div class="col s12 center-align">
-      <div class="chip overlay-color"><img src="/images/profpic.jpg" alt="Contact Person">Dingus</div>
-      <div class="chip white-text">add</div>
-      <div class="chip overlay-color"><img src="/images/profpic.jpg" alt="Contact Person">baked</div>
-      <div class="chip white-text">add</div>
-      <div class="chip white-text">add</div>
-      <div class="chip overlay-color"><img src="/images/profpic.jpg" alt="Contact Person">snausages</div>
-      <div class="chip white-text">add</div>
-      <div class="chip overlay-color"><img src="/images/profpic.jpg" alt="Contact Person">dog</div>
-      <div class="chip white-text">add</div>
-      <div class="chip white-text">add</div>
-      <div class="chip overlay-color"><img src="/images/profpic.jpg" alt="Contact Person">crying</div>
-      <div class="chip white-text">add</div>.
+      <!-- <div class="chip overlay-color"><img src="/images/profpic.jpg" alt="Contact Person">Dingus</div> -->
+      <div ng-repeat="word in $ctrl.sentence.content" ng-click="$ctrl.addWord(word)" class="chip white-text">{{word.word}}</div>
     </div>
   </div>
 
   <div class="row">
     <div class="col s10 offset-s1">
-      <h5 class="center-align gradient-text-full-teal">It's Billy's turn!</h5>
+      <h5 class="center-align gradient-text-full-teal">It's {{ $ctrl.sentence.curr_user}}'s turn!</h5>
     </div>
   </div>
 
