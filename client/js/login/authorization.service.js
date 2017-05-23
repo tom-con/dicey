@@ -17,6 +17,7 @@
     function watchLoginChange() {
       FB.Event.subscribe('auth.authResponseChange', function(res) {
         if (res.status === 'connected') {
+          console.log("this is the problem");
           loginService.checkUserExists(res)
             .then(user => user ? user : loginService.createUser(res))
             .then(user => {
@@ -37,9 +38,13 @@
     }
 
     function friendsPermission() {
-      FB.login(function(response) {}, {
-        scope: 'user_friends'
-      });
+      return new Promise(function (resolve, reject) {
+        FB.login(function(response) {
+          response.error ? reject(response.error) : resolve(response)
+        }, {
+          scope: 'user_friends'
+        });
+      })
     }
 
     function getFriends() {
@@ -53,12 +58,19 @@
     }
 
     function getUserInfo() {
-      var _self = this;
+      let user = {};
       FB.api('/me', function(res) {
-        loginService.updateUser(res).then(user => {
-          $state.go('home')
-        })
-      });
+        user.fbid = res.id
+        user.name = res.name
+        getUserPermissions(user)
+      })
+    }
+
+    function getUserPermissions(user){
+      FB.api('/me/permissions', function(resp){
+        resp.data.forEach(thisPerm => thisPerm.status === 'granted' ? user[thisPerm.permission] = true : user[thisPerm.permission] = false)
+        loginService.updateUser(user)
+      })
     }
 
     function logout() {
@@ -70,4 +82,5 @@
       });
     }
   }
+
 }())

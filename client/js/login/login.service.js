@@ -19,8 +19,8 @@
       return $http.post('/api/users', user).then(usr => usr.data[0])
     }
 
-    function updateUser(data){
-      return $http.patch(`/api/users/${data.id}`, data).then(usr => {
+    function updateUser(userData){
+      return $http.patch(`/api/users/${userData.fbid}`, userData).then(usr => {
         return usr.data
       })
     }

@@ -4,6 +4,9 @@ exports.up = function(knex, Promise) {
     tbl.string('fbid').primary().notNullable()
     tbl.string('name')
     tbl.string('accessToken')
+    tbl.boolean('public_profile').defaultTo(false)
+    tbl.boolean('user_friends').defaultTo(false)
+    tbl.boolean('publish_actions').defaultTo(false)
 
   })
 };

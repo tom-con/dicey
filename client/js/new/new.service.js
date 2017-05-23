@@ -15,9 +15,7 @@
       return $http.post('/api/groups', {
         name: data.name,
         word_limit: data.word_limit
-      }).then(group => {
-        return group.data
-      })
+      }).then(group => group.data)
     }
 
     function addUsersGroup(data) {
@@ -28,9 +26,7 @@
       return Promise.all(peopleArr.map(person => $http.post('/api/usersgroups', {
         user_id: person,
         group_id: data.group_id
-      }).then(datum => {
-        return datum.data
-      })))
+      }).then(datum => datum.data)))
     }
   }
 }())
