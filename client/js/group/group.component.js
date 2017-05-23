@@ -13,7 +13,6 @@
     vm.$onInit = onInit
 
     function onInit() {
-      vm.group = {}
       getGroup($state.params.sid)
     }
 

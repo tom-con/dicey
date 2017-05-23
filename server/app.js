@@ -7,6 +7,7 @@ const app = express();
 
 const users = require('./routes/users');
 const groups = require('./routes/groups');
+const sentences = require('./routes/sentences');
 const usersgroups = require('./routes/usersgroups');
 
 // uncomment after placing your favicon in /public
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, '/../', 'node_modules')))
 
 app.use('/api/users', users);
 app.use('/api/groups', groups);
+app.use('/api/sentences', sentences);
 app.use('/api/usersgroups', usersgroups);
 
 app.use('*', function(req, res) {

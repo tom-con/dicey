@@ -16,7 +16,7 @@ p {
  * ====================================
  */
 
- .gradient-text {
+ .gradient-text, .gradient-text-teal {
    -moz-background-clip: text;
    -webkit-background-clip: text;
    background-clip: text;
@@ -24,7 +24,7 @@ p {
    -moz-text-fill-color: transparent;
    text-fill-color: transparent;
  }
- .gradient-text-full {
+ .gradient-text-full, .gradient-text-full-teal {
    -moz-background-clip: text;
    -webkit-background-clip: text;
    background-clip: text;
@@ -79,6 +79,16 @@ p {
   background-image: -ms-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
   background-image: -o-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
 }
+.gradient-text-teal {
+  background-image: -webkit-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -ms-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -o-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+}
+.gradient-text-full-teal {
+  background-image: -webkit-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -ms-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -o-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+}
 .gradient-border::before {
   background-image: linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
   background-image: -webkit-linear-gradient(130deg, rgba(148, 73, 222, 0.97) 0%, rgba(224, 12, 134, 0.85) 100%);
@@ -119,10 +129,13 @@ p {
   /* 0% transparency */
 }
 
-
-
 .group-box {
   border: 1px solid rgba(255, 255, 255, 0.45);
   background-color: rgba(255, 255, 255, 0.05);
   padding: 10px;
+}
+
+.chip {
+  background-color: rgb(24, 24, 24);
+  font-size: 15px;
 }
