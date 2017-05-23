@@ -4,7 +4,7 @@
     <div class="col s10 l6 offset-s1 offset-l3">
     <div class="group-box">
       <ul>
-        <li ng-repeat="group in $ctrl.groups"><span class="group-name">{{group.name}}</span> <span class="whos-turn">Ready for approval!</span> <span class="pos-turn"> 14/14</span></li>
+        <li ng-repeat="group in $ctrl.groups"><a ui-sref="group.sentence({sid : group.id})"><span class="group-name">{{group.name}}</span> <span class="whos-turn">Ready for approval!</span> <span class="pos-turn"> 14/14</span></a></li>
       </ul>
     </div>
     <div class="row"></div>

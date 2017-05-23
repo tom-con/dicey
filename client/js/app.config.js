@@ -27,6 +27,17 @@
         parent: 'layout',
         component: 'new'
       })
+      .state('group', {
+        name: 'group',
+        url: '/group',
+        parent: 'layout',
+        component: 'group'
+      })
+      .state('group.sentence', {
+        name: 'group.sentence',
+        url: '/:sid',
+        component: 'sentence'
+      })
       .state('login', {
         name: 'login',
         url: '/',

@@ -17,7 +17,7 @@
     function watchLoginChange() {
       FB.Event.subscribe('auth.authResponseChange', function(res) {
         if (res.status === 'connected') {
-          console.log("this is the problem");
+          console.log("this is a problem");
           loginService.checkUserExists(res)
             .then(user => user ? user : loginService.createUser(res))
             .then(user => {
@@ -31,7 +31,7 @@
 
     function addPublish() {
       FB.login(function(response) {
-        console.log(response);
+
       }, {
         scope: 'publish_actions'
       });
