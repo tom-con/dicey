@@ -1,6 +1,6 @@
 
 <!-- Modal Structure -->
-<div id="modal{{$ctrl.word.$$hashKey}}" class="modal">
+<div id="modal{{$ctrl.word.$$hashKey.split(':')[1]}}" class="modal">
   <form ng-submit="$ctrl.addWord()" novalidate>
     <div class="modal-content">
       <h4>Enter a word</h4>
