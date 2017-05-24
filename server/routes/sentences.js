@@ -14,8 +14,12 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     knex('sentences')
-      .insert(req.body, '*')
-      .then(sentence => sentence[0])
+      .insert(req.body)
+      .returning('*')
+      .then(sentence => {
+        res.send(sentence[0])
+      })
+
 });
 
 router.patch('/:id', function(req, res, next) {
@@ -24,7 +28,6 @@ router.patch('/:id', function(req, res, next) {
     .where('id', req.params.id)
     .update({content: req.body.content, current_turn: req.body.current_turn}, '*')
     .then(sentence => {
-      console.log(sentence);
       res.send(sentence)
     })
 });

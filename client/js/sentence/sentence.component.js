@@ -28,7 +28,7 @@
           getUser(sentence.current_turn[0], sentence)
         } else {
           sentenceService.createSentence(vm.group).then(newSentence => {
-            $state.go('group', {sid: sentence.group_id})
+            getUser(newSentence.current_turn[0], newSentence)
           })
         }
       })

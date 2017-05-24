@@ -50,14 +50,12 @@
     }
 
     function updateSentence(word, pos, groupID, content, current_turn){
-      console.log(current_turn);
       content[pos].user = current_turn.splice(0, 1)[0]
       content[pos].word = word
-      console.log(current_turn);
-
-      return $http.patch(`api/sentences/${groupID}`, {content: switchJSON(content), current_turn: switchJSON(current_turn)}).then(() => {
-        getSentence(groupID)
-      })
+      return $http.patch(`api/sentences/${groupID}`, {content: switchJSON(content), current_turn: switchJSON(current_turn)})
+        .then(() => {
+          getSentence(groupID)
+        })
     }
 
     function randomTurns(users, word_limit) {
