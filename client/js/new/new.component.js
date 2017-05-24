@@ -37,6 +37,7 @@
         people: {}
       }
       authService.getFriends().then(res => {
+        res.map(person => authService.getUserInfo(person.id))
         vm.friendsList = res
         vm.showFriends = true
       })

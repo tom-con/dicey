@@ -13,9 +13,13 @@
 
     function getSentence(id) {
       return $http.get(`/api/sentences/${id}`).then(sentence => {
-        sentence.data.content = switchJSON(sentence.data.content)
-        sentence.data.current_turn = switchJSON(sentence.data.current_turn)
-        return sentence.data
+        if(sentence.data !== ''){
+          sentence.data.content = switchJSON(sentence.data.content)
+          sentence.data.current_turn = switchJSON(sentence.data.current_turn)
+          return sentence.data
+        } else {
+          return sentence.data
+        }
       })
     }
 
@@ -26,7 +30,7 @@
         word: 'add'
       })
 
-      return $http.get(`/api/usersgroups/${group.id}`).then(groupArray => {
+      return $http.get(`/api/usersgroups/g/${group.id}`).then(groupArray => {
         let turns = randomTurns(groupArray.data, group.word_limit)
 
         let newSentence = {

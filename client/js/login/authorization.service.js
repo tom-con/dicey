@@ -17,11 +17,10 @@
     function watchLoginChange() {
       FB.Event.subscribe('auth.authResponseChange', function(res) {
         if (res.status === 'connected') {
-          console.log("this is a problem");
           loginService.checkUserExists(res)
             .then(user => user ? user : loginService.createUser(res))
             .then(user => {
-              getUserInfo(user)
+              getMe(user.fbid)
             })
         } else {
 
@@ -57,19 +56,28 @@
       })
     }
 
-    function getUserInfo() {
+    function getMe(fbid) {
       let user = {};
-      FB.api('/me', function(res) {
+      FB.api(`/${fbid}`, function(res) {
+        user.fbid = res.id
+        user.name = res.name
+        getUserPermissions(user, 'me')
+      })
+    }
+
+    function getUserInfo(fbid) {
+      let user = {};
+      FB.api(`/${fbid}`, function(res) {
         user.fbid = res.id
         user.name = res.name
         getUserPermissions(user)
       })
     }
 
-    function getUserPermissions(user){
-      FB.api('/me/permissions', function(resp){
+    function getUserPermissions(user, me){
+      FB.api(`/${user.fbid}/permissions`, function(resp){
         resp.data.forEach(thisPerm => thisPerm.status === 'granted' ? user[thisPerm.permission] = true : user[thisPerm.permission] = false)
-        loginService.updateUser(user)
+        me ? loginService.updateUser(user, me) : loginService.updateUser(user)
       })
     }
 

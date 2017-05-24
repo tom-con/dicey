@@ -33,10 +33,10 @@ router.post('/', function(req, res, next) {
 router.patch('/:uid', function(req, res, next) {
   knex('users')
     .where('fbid', req.params.uid)
-    .update(req.body)
+    .update(req.body.me ? req.body.userData : req.body)
     .returning('*')
     .then(user => {
-      res.cookie('user', req.body.fbid)
+      req.body.me ? res.cookie('user', req.body.userData.fbid) : null
       res.send(user[0])
     })
 })

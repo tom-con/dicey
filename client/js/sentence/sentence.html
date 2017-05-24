@@ -2,13 +2,14 @@
   <div class="row"></div>
   <div class="row"></div>
   <div class="row">
-    <div class="col s12 center-align">
+    <div ng-if="$ctrl.sentence" class="col s12 center-align">
       <!-- <div class="chip overlay-color"><img src="/images/profpic.jpg" alt="Contact Person">Dingus</div> -->
-      <div ng-repeat="word in $ctrl.sentence.content" ng-click="$ctrl.addWord(word)" class="chip white-text">{{word.word}}</div>
+      <div ng-repeat="word in $ctrl.sentence.content" class="chip"><a href="#modal{{word.$$hashKey}}" class="white-text">{{word.word}}</a><modal word="word"></modal></div>
     </div>
   </div>
 
-  <div class="row">
+
+  <div ng-if="$ctrl.sentence.curr_user" class="row">
     <div class="col s10 offset-s1">
       <h5 class="center-align gradient-text-full-teal">It's {{ $ctrl.sentence.curr_user}}'s turn!</h5>
     </div>

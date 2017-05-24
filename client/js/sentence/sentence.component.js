@@ -21,27 +21,31 @@
       getSentence()
     }
 
-    function addWord(word){
+    function addWord(word) {
       console.log(word);
       console.log(vm.sentence.content.indexOf(word));
     }
 
-    function getSentence(){
+    function getSentence() {
       sentenceService.getSentence($state.params.sid).then(sentence => {
-        console.log("Sentence from the database got to the component", sentence);
-        if(sentence){
+        if (sentence) {
           vm.sentence = sentence
-          loginService.getUser(vm.sentence.current_turn[0]).then(user => {
-            vm.sentence.curr_user = user.name
-          })
-
+          getUser(vm.sentence.current_turn[0])
         } else {
           sentenceService.createSentence(vm.group).then(newSentence => {
-
+            vm.sentence = newSentence
+            getUser(vm.sentence.current_turn[0])
           })
         }
       })
     }
-}
+
+    function getUser(turn) {
+      loginService.getUser(turn).then(user => {
+        vm.sentence.curr_user = user.name
+        // $state.go('group', {sid: vm.sentence.group_id})
+      })
+    }
+  }
 
 }())

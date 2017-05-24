@@ -18,7 +18,6 @@
 
     function getGroup(id) {
       groupService.getGroup(id).then(group => {
-        console.log(group);
         vm.group = group
       })
     }
