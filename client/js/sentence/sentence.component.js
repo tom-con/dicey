@@ -15,9 +15,11 @@
     const vm = this
     vm.$onInit = onInit
     vm.addWord = addWord
+    vm.open = open
 
 
     function onInit() {
+
       getSentence()
     }
 
@@ -45,6 +47,9 @@
         vm.sentence.curr_user = user.name
         // $state.go('group', {sid: vm.sentence.group_id})
       })
+    }
+    function open(pos) {
+      $(`#modal${pos}`).modal('open');
     }
   }
 

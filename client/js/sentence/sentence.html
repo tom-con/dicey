@@ -4,7 +4,7 @@
   <div class="row">
     <div ng-if="$ctrl.sentence" class="col s12 center-align">
       <!-- <div class="chip overlay-color"><img src="/images/profpic.jpg" alt="Contact Person">Dingus</div> -->
-      <div ng-repeat="word in $ctrl.sentence.content" class="chip"><a href="#modal{{word.$$hashKey.split(':')[1]}}" class="white-text">{{word.word}}</a><modal word="word"></modal></div>
+      <div ng-repeat="word in $ctrl.sentence.content" ng-click="$ctrl.open(word.pos)" class="chip"><a class="white-text">{{word.word}}</a><modal word="word"></modal></div>
     </div>
   </div>
 

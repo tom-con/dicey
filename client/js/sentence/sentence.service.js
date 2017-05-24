@@ -26,9 +26,11 @@
     function createSentence(group) {
       let arr = []
       arr.length = group.word_limit
-      arr.fill({
-        word: 'add'
-      })
+      for(let i = 0; i < arr.length; i++){
+        arr[i] = {}
+        arr[i].word = "add"
+        arr[i].pos = i
+      }
 
       return $http.get(`/api/usersgroups/g/${group.id}`).then(groupArray => {
         let turns = randomTurns(groupArray.data, group.word_limit)
