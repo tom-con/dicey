@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/:uid', function(req, res, next) {
-  console.log(req.params.uid);
   knex('users')
     .where('fbid', `${req.params.uid}`)
     .first()

@@ -6,9 +6,9 @@
       templateUrl: './js/new/new.html'
     })
 
-  controller.$inject = ['newService', '$state', '$rootScope', 'authService', 'newService']
+  controller.$inject = ['newService', '$state', '$rootScope', 'authService', 'newService', '$scope']
 
-  function controller(newService, $state, $rootScope, authService, newService) {
+  function controller(newService, $state, $rootScope, authService, newService, $scope) {
     const vm = this
     vm.$onInit = onInit
     vm.getFriends = getFriends
@@ -21,6 +21,7 @@
       vm.showForm = false
       vm.addedFriends = []
       vm.selected = {}
+
     }
 
     function authFriends() {
@@ -36,10 +37,14 @@
         word_limit: 0,
         people: {}
       }
+
       authService.getFriends().then(res => {
-        res.map(person => authService.getUserInfo(person.id))
-        vm.friendsList = res
-        vm.showFriends = true
+        Promise.all(res.map(person => authService.getUserInfo(person.id))).then(people => {
+          $scope.$apply(function(){
+            vm.showFriends = true
+            vm.friendsList = [...people]
+          })
+        })
       })
     }
 
@@ -50,7 +55,7 @@
           people: vm.form.people,
           group_id: group[0].id
         }).then(groupArr => {
-          $state.go('home')
+          $state.go('group.sentence', {sid: groupArr[0][0].group_id})
         })
       })
     }

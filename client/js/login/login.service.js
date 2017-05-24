@@ -13,8 +13,7 @@
     sv.getUser = getUser
 
     function getUser(userID) {
-      return $http.get(`/api/users/${userID}`).then(usr => {
-        return usr.data ? usr.data : false})
+      return $http.get(`/api/users/${userID}`).then(usr => usr.data ? usr.data : false)
     }
 
     function checkUserExists(user){
@@ -26,9 +25,7 @@
     }
 
     function updateUser(userData){
-      return $http.patch(`/api/users/${userData.fbid}`, userData).then(usr => {
-        return usr.data
-      })
+      return $http.patch(`/api/users/${userData.fbid}`, userData).then(usr => usr.data)
     }
 
   }

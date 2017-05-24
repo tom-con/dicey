@@ -25,13 +25,13 @@
         }"
         name="wordLimit" ng-model="$ctrl.form.word_limit" min="5" max="30" required type="number"></label>
       <span ng-show="$ctrl.newGroupForm.wordLimit.$error.required">Group word limit is required</span>
-      <span ng-show="$ctrl.newGroupForm.wordLimit.$error.min || $ctrl.newGroupForm.wordLimit.$error.max">Group word limit between 5 and 30</span
+      <span ng-show="$ctrl.newGroupForm.wordLimit.$error.min || $ctrl.newGroupForm.wordLimit.$error.max">Group word limit between 5 and 30</span>
       <br>
 
-      <div style="border: 1px solid black;">
+      <div ng-if="$ctrl.showFriends" style="border: 1px solid black;">
         <div ng-repeat="friend in $ctrl.friendsList">
-          <input ng-model="$ctrl.form.people[friend.id]" type="checkbox" class="filled-in overlay-color" id="{{friend.id}}">
-          <label for="{{friend.id}}">{{friend.name}}</label>
+          <input ng-model="$ctrl.form.people[friend.fbid]" type="checkbox" class="filled-in overlay-color" id="{{friend.fbid}}">
+          <label for="{{friend.fbid}}">{{friend.name}}</label><img src="{{friend.prof_picture}}">
         </div>
       </div>
 
