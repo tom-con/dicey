@@ -25,7 +25,6 @@
       sentenceService.getSentence($state.params.sid).then(sentence => {
         if (sentence) {
           vm.sentence = sentence
-          console.log(vm.sentence);
           getUser(vm.sentence.current_turn[0])
         } else {
           sentenceService.createSentence(vm.group).then(newSentence => {
@@ -38,7 +37,6 @@
 
     function getUser(turn) {
       loginService.getUser(turn).then(user => {
-        console.log("in getUser on sentence.component", user);
         vm.sentence.curr_user = user.name
       })
     }

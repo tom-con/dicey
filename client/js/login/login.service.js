@@ -14,7 +14,6 @@
 
     function getUser(userID) {
       return $http.get(`/api/users/${userID}`).then(usr => {
-        console.log('this is the ', usr);
         return usr.data ? usr.data : false})
     }
 
