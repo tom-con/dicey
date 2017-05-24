@@ -13,11 +13,17 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/:uid', function(req, res, next) {
+  console.log(req.params.uid);
   knex('users')
     .where('fbid', `${req.params.uid}`)
     .first()
     .then(user => {
-      res.send(user || false)
+      // console.log(user);
+      if(user){
+        res.send(user)
+      } else {
+        res.send(false)
+      }
     })
 });
 
@@ -33,10 +39,10 @@ router.post('/', function(req, res, next) {
 router.patch('/:uid', function(req, res, next) {
   knex('users')
     .where('fbid', req.params.uid)
-    .update(req.body.me ? req.body.userData : req.body)
+    .update(req.body)
     .returning('*')
     .then(user => {
-      req.body.me ? res.cookie('user', req.body.userData.fbid) : null
+      req.cookies.user ? null : res.cookie('user', req.body.fbid)
       res.send(user[0])
     })
 })

@@ -10,6 +10,7 @@
     const sv = this
     sv.getSentence = getSentence
     sv.createSentence = createSentence
+    sv.updateSentence = updateSentence
 
     function getSentence(id) {
       return $http.get(`/api/sentences/${id}`).then(sentence => {
@@ -45,6 +46,17 @@
           sentence.data.current_turn = switchJSON(sentence.data.current_turn)
           return sentence.data
         })
+      })
+    }
+
+    function updateSentence(word, pos, groupID, content, current_turn){
+      console.log(current_turn);
+      content[pos].user = current_turn.splice(0, 1)[0]
+      content[pos].word = word
+      console.log(current_turn);
+
+      return $http.patch(`api/sentences/${groupID}`, {content: switchJSON(content), current_turn: switchJSON(current_turn)}).then(() => {
+        getSentence(groupID)
       })
     }
 

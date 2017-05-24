@@ -18,7 +18,6 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   let user = req.cookies.user
-  console.log(user);
   knex('groups')
     .insert({name: req.body.name, word_limit: req.body.word_limit, owner: user}, '*')
     .then(group => {

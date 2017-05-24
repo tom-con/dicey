@@ -1,13 +1,11 @@
-
-<!-- Modal Structure -->
-<div id="modal{{$ctrl.word.pos}}" class="modal">
-  <form ng-submit="$ctrl.addWord()" novalidate>
+<div id="modal{{$ctrl.word.pos}}" class="modal black group-box">
+  <form ng-submit="$ctrl.addWord($ctrl.word.pos)" novalidate>
     <div class="modal-content">
-      <h4>Enter a word</h4>
-      <input type="text" ng-model="$ctrl.wordToAdd" />
+      <h4 class="gradient-text-teal">Enter a word</h4>
+      <input type="text" class="white-text" ng-model="$ctrl.wordToAdd" />
     </div>
-    <div class="modal-footer">
-      <button  type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+    <div class="modal-footer black">
+      <button  type="submit" class="modal-action modal-close waves-effect waves-green btn-flat gradient-text-full">Submit</button>
     </div>
   </form>
 </div>

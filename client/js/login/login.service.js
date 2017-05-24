@@ -13,7 +13,9 @@
     sv.getUser = getUser
 
     function getUser(userID) {
-      return $http.get(`/api/users/${userID}`).then(usr => usr.data ? usr.data : false)
+      return $http.get(`/api/users/${userID}`).then(usr => {
+        console.log('this is the ', usr);
+        return usr.data ? usr.data : false})
     }
 
     function checkUserExists(user){
@@ -24,8 +26,8 @@
       return $http.post('/api/users', user).then(usr => usr.data[0])
     }
 
-    function updateUser(userData, me){
-      return $http.patch(`/api/users/${userData.fbid}`, me ? {userData, me} : userData).then(usr => {
+    function updateUser(userData){
+      return $http.patch(`/api/users/${userData.fbid}`, userData).then(usr => {
         return usr.data
       })
     }

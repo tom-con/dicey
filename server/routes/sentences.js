@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 router.get('/:id', function(req, res, next) {
   knex('sentences')
     .where('id', req.params.id)
@@ -21,6 +16,17 @@ router.post('/', function(req, res, next) {
     knex('sentences')
       .insert(req.body, '*')
       .then(sentence => sentence[0])
+});
+
+router.patch('/:id', function(req, res, next) {
+  let user = req.cookies.user
+  knex('sentences')
+    .where('id', req.params.id)
+    .update({content: req.body.content, current_turn: req.body.current_turn}, '*')
+    .then(sentence => {
+      console.log(sentence);
+      res.send(sentence)
+    })
 });
 
 
