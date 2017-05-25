@@ -10,13 +10,14 @@
       templateUrl: './js/sentence/sentence.html'
     })
 
-  controller.$inject = ['newService', '$state', '$rootScope', 'sentenceService', 'loginService', 'authService', '$scope', 'moment']
+  controller.$inject = ['newService', '$state', '$rootScope', 'sentenceService', 'loginService', 'authService', '$scope', 'moment', 'groupService']
 
-  function controller(newService, $state, $rootScope, sentenceService, loginService, authService, $scope, moment) {
+  function controller(newService, $state, $rootScope, sentenceService, loginService, authService, $scope, moment, groupService) {
     const vm = this
     vm.$onInit = onInit
     vm.open = open
     vm.getPic = getPic
+    vm.authPublish = authPublish
 
 
     function onInit() {
@@ -27,6 +28,14 @@
     function getSentence() {
       sentenceService.getSentence($state.params.sid)
         .then(sentence => {
+
+          if(sentence.current_turn.length === 0){
+            vm.completedSentence = true;
+          }
+
+
+
+
           if (sentence) {
             sentenceService.getWords(sentence).then(wordsArr => {
               sentence.words = wordsArr
@@ -56,10 +65,18 @@
       })
     }
 
+    function authPublish(){
+      authService.addPublish()
+        .then(() => {
+          groupService.checkApproval(vm.sentence.group_id).then((notApprovedArr) => {
+            console.log(notApprovedArr);
+          })
+        })
+    }
+
     function getActivity(sentence){
       sentenceService.getActivity(sentence).then(activity_feed => {
         vm.activity_feed = activity_feed
-        $state.go('group.sentence', {sid: sentence.group_id}, {reload: true})
       })
     }
 

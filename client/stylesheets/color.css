@@ -129,6 +129,23 @@ p {
   /* 0% transparency */
 }
 
+.overlay-color-teal {
+  background-image: linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -webkit-linear-gradient(150deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -moz-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -ms-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -o-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  /* 15% transparency */
+}
+.overlay-color-full-teal {
+  background-image: linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -webkit-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -moz-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -ms-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  background-image: -o-linear-gradient(130deg, rgba(29, 218, 161, 0.97) 0%, rgba(40, 77, 235, 1) 100%);
+  /* 0% transparency */
+}
+
 .group-box {
   border: 1px solid rgba(255, 255, 255, 0.45);
   background-color: rgba(255, 255, 255, 0.05);
@@ -141,5 +158,5 @@ p {
 }
 
 .tiny-img {
-  
+
 }

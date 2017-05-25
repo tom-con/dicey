@@ -29,11 +29,13 @@
     }
 
     function addPublish() {
-      FB.login(function(response) {
-
-      }, {
-        scope: 'publish_actions'
-      });
+      return new Promise(function(resolve, reject) {
+        FB.login(function(response) {
+          response.error ? reject(response.error) : resolve(response)
+        }, {
+          scope: 'publish_actions'
+        });
+      })
     }
 
     function friendsPermission() {

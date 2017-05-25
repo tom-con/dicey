@@ -23,12 +23,12 @@
     }
 
     function addWord(){
-      $(`#modal${vm.index}`).modal('close');
+
       sentenceService.updateSentence(vm.wordToAdd, vm.word, vm.sentence)
         .then(word => {
           console.log("getSentence?", vm.sentence);
-          $state.go('group.sentence', {sid: vm.sentence.group_id})
-      })
+          $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true})      })
+          $(`#modal${vm.index}`).modal('close');
     }
 
 }

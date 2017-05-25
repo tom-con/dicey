@@ -22,6 +22,17 @@ router.get('/:id', function(req, res, next) {
     })
 })
 
+router.get('/a/:id', function(req, res, next) {
+  let groupID = req.params.id
+  knex('users_groups')
+  .select('user_fbid')
+    .where('group_id', groupID)
+    .where('is_approved', false)
+    .then(users => {
+      res.send(users)
+    })
+})
+
 router.post('/', function(req, res, next) {
   knex('users_groups')
     .insert(req.body, '*')

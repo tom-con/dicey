@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     tbl.increments()
     tbl.string('user_fbid').references('users.fbid').onDelete('CASCADE')
     tbl.integer('group_id').references('groups.id').onDelete('CASCADE')
+    tbl.boolean('is_approved').defaultTo('false')
   })
 };
 
