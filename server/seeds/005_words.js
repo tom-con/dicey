@@ -1,11 +1,11 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('groups').del()
+  return knex('words').del()
     .then(function () {
       // Inserts seed entries
-      return knex('groups').insert();
+      return knex('words').insert();
     }).then(() => {
-      return knex.raw("SELECT setval('groups_id_seq', (SELECT MAX(id) FROM groups));")
+      return knex.raw("SELECT setval('words_id_seq', (SELECT MAX(id) FROM words));")
     });
 };

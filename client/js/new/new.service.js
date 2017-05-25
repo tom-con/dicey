@@ -24,7 +24,7 @@
         peopleArr.push(person)
       }
       return Promise.all(peopleArr.map(person => $http.post('/api/usersgroups', {
-        user_id: person,
+        user_fbid: person,
         group_id: data.group_id
       }).then(datum => datum.data)))
     }

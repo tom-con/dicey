@@ -11,6 +11,12 @@
     sv.updateUser = updateUser
     sv.createUser = createUser
     sv.getUser = getUser
+    sv.getMe = getMe
+
+    function getMe() {
+      return $http.get(`/api/users/me`).then(usr => usr.data ? usr.data : false)
+
+    }
 
     function getUser(userID) {
       return $http.get(`/api/users/${userID}`).then(usr => usr.data ? usr.data : false)

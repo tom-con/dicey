@@ -3,9 +3,6 @@ const router = express.Router();
 const knex = require('../db/knex')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
 router.get('/:id', function(req, res, next) {
   knex('groups')
@@ -19,7 +16,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/', function(req, res, next) {
   let user = req.cookies.user
   knex('groups')
-    .insert({name: req.body.name, word_limit: req.body.word_limit, owner: user}, '*')
+    .insert({name: req.body.name, word_limit: req.body.word_limit, owner_fbid: user}, '*')
     .then(group => {
       res.send(group)
     })

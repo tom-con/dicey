@@ -50,12 +50,13 @@
 
     function createGroup() {
       newService.addGroup(vm.form).then(group => {
-        vm.form.people[group[0].owner] = true
+        console.log("This is the created group", group);
+        vm.form.people[group[0].owner_fbid] = true
         newService.addUsersGroup({
           people: vm.form.people,
           group_id: group[0].id
         }).then(groupArr => {
-          $state.go('group.sentence', {sid: groupArr[0][0].group_id})
+          $state.go('group.sentence', {sid: group[0].id})
         })
       })
     }

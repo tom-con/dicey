@@ -10,7 +10,7 @@
     sv.getGroups = getGroups
 
     function getGroups(){
-      return $http.get(`/api/usersgroups/u`).then(groups => groups.data)
+      return $http.get(`/api/usersgroups`).then(groups => groups.data)
     }
 
   }

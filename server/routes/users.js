@@ -11,18 +11,22 @@ router.get('/', function(req, res, next) {
     })
 });
 
+router.get('/me', function(req, res, next) {
+  let me = req.cookies.user
+  knex('users')
+    .where('fbid', me)
+    .first()
+    .then(me => {
+      res.send(me)
+    })
+});
 
 router.get('/:uid', function(req, res, next) {
   knex('users')
     .where('fbid', `${req.params.uid}`)
     .first()
     .then(user => {
-      // console.log(user);
-      if(user){
-        res.send(user)
-      } else {
-        res.send(false)
-      }
+      res.send(user ? user : false)
     })
 });
 

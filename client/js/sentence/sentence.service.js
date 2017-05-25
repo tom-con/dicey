@@ -9,53 +9,60 @@
   function service($http) {
     const sv = this
     sv.getSentence = getSentence
+    sv.getWords = getWords
     sv.createSentence = createSentence
     sv.updateSentence = updateSentence
 
     function getSentence(id) {
       return $http.get(`/api/sentences/${id}`).then(sentence => {
         if(sentence.data !== ''){
-          sentence.data.content = switchJSON(sentence.data.content)
           sentence.data.current_turn = switchJSON(sentence.data.current_turn)
-          return sentence.data
-        } else {
-          return sentence.data
+        }
+        return sentence.data
+      })
+    }
+
+    function getWords(sentence) {
+      console.log("then into here to service.getWords", sentence);
+
+      return $http.get(`/api/words/${sentence.id}`).then(wordsArray => {
+
+        if(wordsArray.data.length > 0) {
+          return wordsArray.data
+        }
+        else {
+
+          let arr = []
+
+          for(let i = 0; i < sentence.word_limit; i++) {
+            arr.push({sentence_id:sentence.id, author_fbid:null, text:'add word', position: i})
+          }
+          return Promise.all(arr.map(el => $http.post(`/api/words`, el).then(singleWord => singleWord.data)))
         }
       })
     }
 
     function createSentence(group) {
-      let arr = []
-      arr.length = group.word_limit
-      for(let i = 0; i < arr.length; i++){
-        arr[i] = {}
-        arr[i].word = "add"
-        arr[i].pos = i
-      }
-
-      return $http.get(`/api/usersgroups/g/${group.id}`).then(groupArray => {
+      return $http.get(`/api/usersgroups/${group.id}`).then(groupArray => {
         let turns = randomTurns(groupArray.data, group.word_limit)
 
         let newSentence = {
           group_id: group.id,
-          content: switchJSON(arr),
-          current_turn: switchJSON(turns),
+          current_turn: switchJSON(turns)
         }
         return $http.post(`/api/sentences`, newSentence).then(sentence => {
-          sentence.data.content = switchJSON(sentence.data.content)
           sentence.data.current_turn = switchJSON(sentence.data.current_turn)
+          sentence.data.word_limit = group.word_limit
           return sentence.data
         })
       })
     }
 
-    function updateSentence(word, pos, groupID, content, current_turn){
-      content[pos].user = current_turn.splice(0, 1)[0]
-      content[pos].word = word
-      return $http.patch(`api/sentences/${groupID}`, {content: switchJSON(content), current_turn: switchJSON(current_turn)})
-        .then(() => {
-          getSentence(groupID)
-        })
+    function updateSentence(word, oldWord, sentence){
+      console.log("We are updating a word here...", arguments);
+      let author_fbid = sentence.current_turn.splice(0, 1)[0]
+      return $http.patch(`/api/words/${oldWord.id}`, {text: word})
+        .then(newWord => newWord.data)
     }
 
     function randomTurns(users, word_limit) {
@@ -65,7 +72,7 @@
         let thisArr = [...users]
         for (let i = 0; i < thisArr.length && j > 0; i++) {
           let pos = Math.floor(Math.random() * thisArr.length)
-          arr.push(thisArr[pos].user_id)
+          arr.push(thisArr[pos].user_fbid)
           j -= 1
           i -= 1
           thisArr.splice(pos, 1)

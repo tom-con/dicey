@@ -57,8 +57,8 @@
     }
 
     function getMe(fbid) {
-      let user = {};
       FB.api(`/${fbid}`, function(res) {
+        let user = {};
         user.fbid = res.id
         user.name = res.name
         getUserPicture(fbid).then(prof_pic => {

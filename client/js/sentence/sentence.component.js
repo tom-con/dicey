@@ -23,11 +23,28 @@
     }
 
     function getSentence() {
-      sentenceService.getSentence($state.params.sid).then(sentence => {
+
+      sentenceService.getSentence($state.params.sid)
+      .then(sentence => {
         if (sentence) {
-          getUser(sentence.current_turn[0], sentence)
+
+          sentenceService.getWords(sentence).then(wordsArr => {
+
+            sentence.words = wordsArr
+            getUser(sentence.current_turn[0], sentence)
+          })
         } else {
-          sentenceService.createSentence(vm.group).then(newSentence => {
+
+          sentenceService.createSentence(vm.group)
+            .then(createdSentence => {
+
+              return sentenceService.getWords(createdSentence).then(words => {
+                console.log("this is where we ended up with our array!", words);
+                createdSentence.words = words
+                return createdSentence
+              })
+            })
+          .then(newSentence => {
             getUser(newSentence.current_turn[0], newSentence)
           })
         }
@@ -35,9 +52,12 @@
     }
 
     function getUser(turn, sentence) {
+
       loginService.getUser(turn).then(user => {
+        console.log("did we get the user?", user);
           vm.sentence = sentence
           vm.sentence.curr_user = user.name
+          console.log("here's that final sentence", vm.sentence);
       })
     }
     function open(pos) {

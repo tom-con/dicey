@@ -13,9 +13,8 @@
           <div class="background">
             <img src="/images/coverphoto.jpg">
           </div>
-          <a href="https://www.facebook.com"><img class="circle" src="/images/profpic.jpg">
-          <span class="white-text name">Thomas Sunshine Conchie</span></a>
-          <span class="white-text name">I'm here to write words and fuck shit up... And I'm all out of words.</span>
+          <a href="https://www.facebook.com/{{$ctrl.me.fbid}}"><img class="circle" src="{{$ctrl.me.prof_picture}}">
+          <span class="white-text name">{{$ctrl.me.name}}</span></a>
         </div>
       </li>
       <li><a class="white-text" ui-sref="home"><i class="gradient-text-full material-icons">group_work</i>My groups</a></li>
@@ -26,4 +25,4 @@
   </div>
 </nav>
 <div id="header-relief"></div>
-<ui-view></ui-view>
+<ui-view me="$ctrl.me"></ui-view>

@@ -4,10 +4,9 @@
     .component('modal', {
       controller: controller,
       bindings: {
-        word: '=',
-        group: '=',
-        content: '=',
-        currentturn: '='
+        word: '<',
+        index: '<',
+        sentence: '<'
       },
       templateUrl: './js/modal/modal.html'
     })
@@ -21,11 +20,15 @@
 
     function onInit() {
        $('.modal').modal();
-
     }
 
-    function addWord(pos){
-      sentenceService.updateSentence(vm.wordToAdd, pos, vm.group.id, vm.content, vm.currentturn)
+    function addWord(){
+      // $(`#modal${vm.word.}`).modal('open');
+      sentenceService.updateSentence(vm.wordToAdd, vm.word, vm.sentence)
+        .then(word => {
+          console.log("getSentence?", vm.sentence);
+          $state.go('group.sentence', {sid: vm.sentence.group_id})
+      })
     }
 
 }

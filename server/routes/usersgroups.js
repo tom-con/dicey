@@ -5,33 +5,20 @@ const knex = require('../db/knex')
 router.get('/', function(req, res, next) {
   let user = req.cookies.user
   knex('users_groups')
-    .select('*')
     .join('groups', 'users_groups.group_id', 'groups.id')
-    .where('users_groups.user_id', user)
+    .where('users_groups.user_fbid', user)
     .then(groups => {
       res.send(groups)
     })
 })
 
-router.get('/g/:id', function(req, res, next) {
-  let group = req.params.id
+router.get('/:id', function(req, res, next) {
+  let groupID = req.params.id
   knex('users_groups')
-  .select('user_id')
-    .where('group_id', group)
+  .select('user_fbid')
+    .where('group_id', groupID)
     .then(users => {
       res.send(users)
-    })
-})
-
-router.get('/u', function(req, res, next) {
-  let user = req.cookies.user
-  console.log(user);
-  knex('users_groups')
-  // .select('*')
-    .join('groups', 'users_groups.group_id', 'groups.id')
-    .where('users_groups.user_id', user)
-    .then(groups => {
-      res.send(groups)
     })
 })
 

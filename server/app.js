@@ -9,6 +9,7 @@ const users = require('./routes/users');
 const groups = require('./routes/groups');
 const sentences = require('./routes/sentences');
 const usersgroups = require('./routes/usersgroups');
+const words = require('./routes/words');
 
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
@@ -21,6 +22,7 @@ app.use('/api/users', users);
 app.use('/api/groups', groups);
 app.use('/api/sentences', sentences);
 app.use('/api/usersgroups', usersgroups);
+app.use('/api/words', words);
 
 app.use('*', function(req, res) {
   res.sendFile('index.html', {
