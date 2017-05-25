@@ -113,10 +113,12 @@
       groupService.getMembers(vm.sentence.group_id).then(members => {
         return new Promise(function(resolve, reject) {
           if (vm.me.fbid === vm.sentence.owner_fbid) {
+            let x = members.length
             console.log("members", members);
             console.log("members.length", members.length);
-            console.log("random number", Math.floor(Math.random() * members.length));
-            let pos = Math.floor(Math.random() * members.length)
+            console.log("random number", Math.floor(Math.random() * x));
+            let pos = Math.floor(Math.random() * x)
+            console.log(pos);
             let winner = members[pos]
             console.log("winner", winner);
             sentenceService.setWinner(vm.sentence, winner.fbid).then(newSen => {
