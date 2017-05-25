@@ -13,6 +13,9 @@
     sv.createSentence = createSentence
     sv.updateSentence = updateSentence
     sv.getActivity = getActivity
+    sv.setWinner = setWinner
+    sv.getWinner = getWinner
+    sv.setUrl = setUrl
 
     function getSentence(id) {
       return $http.get(`/api/sentences/${id}`)
@@ -72,6 +75,19 @@
       })
     }
 
+    function getWinner(sentence) {
+      return $http.get(`/api/sentences/${sentence.id}`).then(sentence => sentence.data)
+    }
+
+    function setWinner(sentence, winner) {
+      return $http.patch(`/api/sentences/${sentence.id}`, {winner: winner}).then(sentence => sentence.data)
+    }
+
+    function setUrl(sentence, url){
+      let update = {deployment_url: url}
+      return $http.patch(`/api/sentences/${sentence.id}`, update).then(sentece => sentence.data)
+    }
+
     function getActivity(sentence){
       return $http.get(`/api/words/s/${sentence.id}`).then(activity_feed => {
         return Promise.all(activity_feed.data.map(activityItem => $http.get(`/api/users/${activityItem.author_fbid}`)
@@ -98,7 +114,6 @@
       }
       return arr
     }
-
     function switchJSON(input) {
       return typeof input === 'string' ? JSON.parse(input) : JSON.stringify(input)
     }

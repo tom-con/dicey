@@ -5,6 +5,8 @@ exports.up = function(knex, Promise) {
     tbl.text('current_turn').defaultTo('')
     tbl.integer('group_id').references('groups.id').onDelete('CASCADE')
     tbl.boolean('is_completed').defaultTo(false)
+    tbl.string('winner').references('users.fbid').onDelete('CASCADE')
+    tbl.string('deployment_url')
     tbl.timestamps(true, true)
   })
 };

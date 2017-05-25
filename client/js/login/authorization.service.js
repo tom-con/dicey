@@ -39,12 +39,12 @@
       })
     }
 
-    function publishSentence(sentence, winner){
+    function publishSentence(sentence, winnerID){
       let narr = []
       sentence.words.forEach(word => narr.push(word.text))
       let message = narr.join(' ')
       return new Promise(function(resolve, reject) {
-        FB.api(`/${winner.fbid}/feed`, 'POST', {message: message}, function(res) {
+        FB.api(`/${winnerID}/feed`, 'POST', {message: message}, function(res) {
           res.error ? reject(res.error) : resolve(res.id)
         })
       })

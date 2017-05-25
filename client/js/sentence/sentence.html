@@ -25,13 +25,17 @@
 
   <div class="row">
     <div class="col s10 offset-s1">
+
       <h5 ng-if="!$ctrl.completedSentence" class="center-align gradient-text-full-teal">It's {{ $ctrl.sentence.curr_user}}'s turn!</h5>
-      <h5 ng-if="$ctrl.completedSentence || !$ctrl.postLink" class="center-align gradient-text-full-teal">The sentence is now complete!</h5>
-      <h5 ng-if="$ctrl.postLink" class="center-align gradient-text-full-teal">The sentence has been posted to <span class="overlay-color-full">{{$ctrl.winnerName}}</span>'s wall! View it <a class="white-text" href="https://www.facebook.com/{{$ctrl.postLink}}">here</a>.</h5>
+
+      <h5 ng-if="$ctrl.completedSentence && !$ctrl.postLink" class="center-align gradient-text-full-teal">The sentence is now complete!</h5>
+
+      <a ng-if="$ctrl.postLink" class="white-text" href="https://www.facebook.com/{{$ctrl.postLink}}"><h5 class="center-align gradient-text-full-teal">Check out <span class="gradient-text-full">{{$ctrl.winner.name}}</span>'s latest insight</h5></a>
+
     </div>
   </div>
 
-  <div ng-if="$ctrl.completedSentence || !$ctrl.postLink" class="row center-align"><button ng-click="$ctrl.authPublish()" class="btn overlay-color-teal">OK!</button></div>
+  <div ng-if="$ctrl.completedSentence && !$ctrl.postLink" class="row center-align"><button ng-click="$ctrl.authPublish()" class="btn overlay-color-teal">OK!</button></div>
 
   <div ng-if="$ctrl.activity_feed" class="row">
     <p class="col s10 offset-s1">Recent activity</p>
