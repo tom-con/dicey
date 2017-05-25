@@ -55,6 +55,7 @@
                 getUser(sentence.current_turn[0], sentence)
               })
             } else {
+              console.log(vm.group);
               sentenceService.createSentence(vm.group)
                 .then(createdSentence => {
                   return sentenceService.getWords(createdSentence).then(words => {
@@ -112,6 +113,7 @@
       groupService.getMembers(vm.sentence.group_id).then(members => {
         return new Promise(function(resolve, reject) {
           if (vm.me.fbid === vm.sentence.owner_fbid) {
+            console.log("MEMBERS", member);
             let winner = members[Math.floor(Math.random() * members.length)]
             sentenceService.setWinner(vm.sentence, winner.fbid).then(newSen => {
               newSen.winner ? resolve(newSen.winner) : reject(newSen)
