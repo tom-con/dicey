@@ -20,16 +20,14 @@ router.post('/', function(req, res, next) {
       .then(sentence => {
         res.send(sentence[0])
       })
-
 });
 
 router.patch('/:id', function(req, res, next) {
-  let user = req.cookies.user
   knex('sentences')
     .where('id', req.params.id)
-    .update({content: req.body.content, current_turn: req.body.current_turn}, '*')
+    .update(req.body, '*')
     .then(sentence => {
-      res.send(sentence)
+      res.send(sentence[0])
     })
 });
 

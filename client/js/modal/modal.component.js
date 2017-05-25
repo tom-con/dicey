@@ -23,7 +23,7 @@
     }
 
     function addWord(){
-      // $(`#modal${vm.word.}`).modal('open');
+      $(`#modal${vm.index}`).modal('close');
       sentenceService.updateSentence(vm.wordToAdd, vm.word, vm.sentence)
         .then(word => {
           console.log("getSentence?", vm.sentence);

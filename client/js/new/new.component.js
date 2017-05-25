@@ -50,7 +50,6 @@
 
     function createGroup() {
       newService.addGroup(vm.form).then(group => {
-        console.log("This is the created group", group);
         vm.form.people[group[0].owner_fbid] = true
         newService.addUsersGroup({
           people: vm.form.people,

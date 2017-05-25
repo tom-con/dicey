@@ -4,7 +4,21 @@
   <div class="row">
     <div ng-if="$ctrl.sentence" class="col s12 center-align">
       <!-- <div class="chip overlay-color"><img src="/images/profpic.jpg" alt="Contact Person">Dingus</div> -->
-      <div ng-repeat="word in $ctrl.sentence.words track by $index" ng-click="$ctrl.open($index)" class="chip"><a href="" class="white-text">{{word.text}}</a><modal sentence="$ctrl.sentence" word="word" index="$index"></modal></div>
+      <span ng-repeat="word in $ctrl.sentence.words track by $index">
+        <div ng-if="!word.author_fbid && $ctrl.myTurn" ng-click="$ctrl.open($index)" class="chip"><a href="" class="white-text">{{word.text}}</a>
+          <modal me="$ctrl.me" sentence="$ctrl.sentence" word="word" index="$index"></modal>
+        </div>
+
+        <div ng-if="!word.author_fbid && !$ctrl.myTurn" class="chip"><span class="white-text">{{word.text}}</span>
+          <modal me="$ctrl.me" sentence="$ctrl.sentence" word="word" index="$index"></modal>
+        </div>
+
+        <div ng-if="word.author_fbid" class="chip overlay-color"><img src="{{$ctrl.getPic(word.author_fbid)}}" alt="Author profile picture"><span class="white-text">{{word.text}}</span>
+          <modal me="$ctrl.me" sentence="$ctrl.sentence" word="word" index="$index"></modal>
+        </div>
+
+      </span>
+
     </div>
   </div>
 
@@ -15,10 +29,10 @@
     </div>
   </div>
 
-  <div class="row">
+  <div ng-if="$ctrl.activity_feed" class="row">
     <p class="col s10 offset-s1">Recent activity</p>
     <div class="col s10 offset-s1 group-box">
-      <p> <span class="gradient-text-full">Thomas Sunshine Conchie</span> added the word <span class="gradient-text-full-teal">'Dingus'</span> at 12:43am</p>
+      <p ng-repeat="activity in $ctrl.activity_feed"> <span class="gradient-text-full">{{activity.user.name}}</span> added the word <span class="gradient-text-full-teal">'{{activity.text}}'</span> at <span am-time-ago="activity.updated_at"></span></p>
     </div>
   </div>
 

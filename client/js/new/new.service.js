@@ -19,6 +19,7 @@
     }
 
     function addUsersGroup(data) {
+
       let peopleArr = []
       for(let person in data.people) {
         peopleArr.push(person)

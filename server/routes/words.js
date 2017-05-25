@@ -11,6 +11,16 @@ router.get('/:id', function(req, res, next) {
     })
 })
 
+router.get('/s/:id', function(req, res, next) {
+  knex('words')
+    .where("sentence_id", req.params.id)
+    .whereNot("author_fbid", null)
+    .orderBy('updated_at')
+    .then(words => {
+      res.send(words)
+    })
+})
+
 router.post('/', function(req, res, next) {
   knex('words')
     .insert(req.body, '*')
