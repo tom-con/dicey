@@ -30,7 +30,7 @@
 
       <div ng-if="$ctrl.showFriends" style="border: 1px solid black;">
         <div ng-repeat="friend in $ctrl.friendsList">
-          <input ng-model="$ctrl.form.people[friend.fbid]" type="checkbox" class="filled-in overlay-color" id="{{friend.fbid}}">
+          <input ngng-model="$ctrl.form.people[friend.fbid]" type="checkbox" class="filled-in overlay-color" id="{{friend.fbid}}">
           <label for="{{friend.fbid}}">{{friend.name}}</label><img src="{{friend.prof_picture}}">
         </div>
       </div>
