@@ -124,6 +124,7 @@
             })
         })
         .then(winner => {
+          console.log("I think the winner is", winner);
           return new Promise(function(resolve, reject){
             if (winner === vm.me.fbid) {
               authService.publishSentence(vm.sentence, winner).then(res => {
