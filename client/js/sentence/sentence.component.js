@@ -113,17 +113,17 @@
       groupService.getMembers(vm.sentence.group_id).then(members => {
         return new Promise(function(resolve, reject) {
           if (vm.me.fbid === vm.sentence.owner_fbid) {
-            console.log("MEMBERS", members);
             let winner = members[Math.floor(Math.random() * members.length)]
             sentenceService.setWinner(vm.sentence, winner.fbid).then(newSen => {
               newSen.winner ? resolve(newSen.winner) : reject(newSen)
             })
-          } else {
-            sentenceService.getWinner(vm.sentence).then(newSen => {
-              newSen.winner ? resolve(newSen.winner) : reject(newSen)
-            })
           }
-        }).then(winner => {
+        }).then(() => {
+            return sentenceService.getWinner(vm.sentence).then(newSen => {
+              return newSen.winner ? newSen.winner : newSen
+            })
+        })
+        .then(winner => {
           return new Promise(function(resolve, reject){
             if (winner === vm.me.fbid) {
               authService.publishSentence(vm.sentence, winner).then(res => {
