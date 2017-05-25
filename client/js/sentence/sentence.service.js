@@ -29,6 +29,7 @@
 
     function getWords(sentence) {
       return $http.get(`/api/words/${sentence.id}`).then(wordsArray => {
+        console.log(sentence);
         if (wordsArray.data.length > 0) {
           return wordsArray.data
         } else {

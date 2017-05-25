@@ -23,39 +23,50 @@
 
     function onInit() {
       vm.sentence = {}
+      vm.turnsTime = true
+      vm.notAllApproved = false
       getSentence()
     }
 
     function getSentence() {
       sentenceService.getSentence($state.params.sid)
         .then(sentence => {
-          if (sentence.winner && sentence.deployment_url) {
-            vm.postLink = sentence.deployment_url
-            loginService.getUser(sentence.winner).then(win => {
-              vm.winner = win
-            })
-
-          }
-          if (sentence.current_turn && sentence.current_turn.length === 0) {
-            vm.completedSentence = true;
-          }
-          if (sentence) {
-            sentenceService.getWords(sentence).then(wordsArr => {
-              sentence.words = wordsArr
-              getUser(sentence.current_turn[0], sentence)
-            })
-          } else {
-            sentenceService.createSentence(vm.group)
-              .then(createdSentence => {
-                return sentenceService.getWords(createdSentence).then(words => {
-                  createdSentence.words = words
-                  return createdSentence
+          return new Promise(function(resolve, reject) {
+            if (sentence.winner && sentence.deployment_url) {
+              vm.notAllApproved = false
+              vm.turnsTime = false
+              vm.completedSentence = false
+              vm.postLink = sentence.deployment_url
+              loginService.getUser(sentence.winner).then(win => {
+                vm.winner = win
+                win ? resolve(true) : reject(false)
+              })
+            } else if (sentence.current_turn && sentence.current_turn.length === 0) {
+              vm.turnsTime = false
+              vm.completedSentence = true;
+              resolve(true)
+            } else {
+              resolve(true)
+            }
+          }).then(() => {
+            if (sentence) {
+              sentenceService.getWords(sentence).then(wordsArr => {
+                sentence.words = wordsArr
+                getUser(sentence.current_turn[0], sentence)
+              })
+            } else {
+              sentenceService.createSentence(vm.group)
+                .then(createdSentence => {
+                  return sentenceService.getWords(createdSentence).then(words => {
+                    createdSentence.words = words
+                    return createdSentence
+                  })
                 })
-              })
-              .then(newSentence => {
-                getUser(newSentence.current_turn[0], newSentence)
-              })
-          }
+                .then(newSentence => {
+                  getUser(newSentence.current_turn[0], newSentence)
+                })
+            }
+          })
         })
     }
 
@@ -72,6 +83,8 @@
       authService.addPublish()
         .then((response) => {
           if (response.status === "connected") {
+            vm.completedSentence = false
+            vm.notAllApproved = true
             groupService.addApproval(vm.sentence.group_id).then(() => {
               groupService.checkApproval(vm.sentence.group_id).then(notApprovedArr => {
                 if (notApprovedArr.length > 0) {
@@ -109,20 +122,29 @@
             })
           }
         }).then(winner => {
-          if (winner === vm.me.fbid) {
-            authService.publishSentence(vm.sentence, winner).then(res => {
-              sentenceService.setUrl(vm.sentence, res)
-            })
-          }
+          return new Promise(function(resolve, reject){
+            if (winner === vm.me.fbid) {
+              authService.publishSentence(vm.sentence, winner).then(res => {
+                sentenceService.setUrl(vm.sentence, res)
+                res ? resolve(true) : reject(false)
+              })
+            } else {
+              resolve(true)
+            }
+          })
+        }).then(() => {
+          $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true})
         })
       })
     }
-
 
     function open(pos) {
       $(`#modal${pos}`).modal('open');
     }
 
   }
+
+
+
 
 }())

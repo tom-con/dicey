@@ -25,6 +25,7 @@ router.post('/', function(req, res, next) {
   knex('words')
     .insert(req.body, '*')
     .then(word => {
+      console.log("getting it");
       res.send(word[0])
     })
 })

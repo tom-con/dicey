@@ -26,7 +26,8 @@
 
       sentenceService.updateSentence(vm.wordToAdd, vm.word, vm.sentence)
         .then(word => {
-          $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true})      })
+          $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true})
+        })
           $(`#modal${vm.index}`).modal('close');
     }
 
