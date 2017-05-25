@@ -15,7 +15,7 @@ router.get('/s/:id', function(req, res, next) {
   knex('words')
     .where("sentence_id", req.params.id)
     .whereNot("author_fbid", null)
-    .orderBy('updated_at')
+    .orderBy('updated_at', 'DESC')
     .then(words => {
       res.send(words)
     })

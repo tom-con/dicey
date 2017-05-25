@@ -59,7 +59,7 @@
     function getActivity(sentence){
       sentenceService.getActivity(sentence).then(activity_feed => {
         vm.activity_feed = activity_feed
-        console.log(activity_feed);
+        $state.go('group.sentence', {sid: sentence.group_id}, {reload: true})
       })
     }
 
