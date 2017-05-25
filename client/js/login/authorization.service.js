@@ -13,6 +13,7 @@
     sv.addPublish = addPublish
     sv.getFriends = getFriends
     sv.friendsPermission = friendsPermission
+    sv.publishSentence = publishSentence
 
     function watchLoginChange() {
       FB.Event.subscribe('auth.authResponseChange', function(res) {
@@ -35,6 +36,17 @@
         }, {
           scope: 'publish_actions'
         });
+      })
+    }
+
+    function publishSentence(sentence, winner){
+      let narr = []
+      sentence.words.forEach(word => narr.push(word.text))
+      let message = narr.join(' ')
+      return new Promise(function(resolve, reject) {
+        FB.api(`/${winner.fbid}/feed`, 'POST', {message: message}, function(res) {
+          res.error ? reject(res.error) : resolve(res.id)
+        })
       })
     }
 

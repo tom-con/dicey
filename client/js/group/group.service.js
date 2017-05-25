@@ -10,6 +10,7 @@
     sv.getGroup = getGroup
     sv.getMembers = getMembers
     sv.checkApproval = checkApproval
+    sv.addApproval = addApproval
 
     function getGroup(id){
       return $http.get(`/api/groups/${id}`).then(group => group.data)
@@ -22,11 +23,12 @@
       })
     }
 
+    function addApproval(groupID){
+      return $http.patch(`/api/usersgroups/${groupID}`)
+    }
+
     function checkApproval(groupID){
-      console.log(groupID);
-      return $http.get(`/api/usersgroups/a/${groupID}`).then(notApprovedUsers => {
-        console.log(notApprovedUsers);
-      })
+      return $http.get(`/api/usersgroups/a/${groupID}`).then(notApprovedUsers => notApprovedUsers.data)
     }
 
   }

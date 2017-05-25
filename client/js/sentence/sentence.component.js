@@ -18,6 +18,7 @@
     vm.open = open
     vm.getPic = getPic
     vm.authPublish = authPublish
+    vm.pickTheWinner = pickTheWinner
 
 
     function onInit() {
@@ -29,11 +30,10 @@
       sentenceService.getSentence($state.params.sid)
         .then(sentence => {
 
-          if(sentence.current_turn.length === 0){
+
+          if(sentence.current_turn && sentence.current_turn.length === 0){
             vm.completedSentence = true;
           }
-
-
 
 
           if (sentence) {
@@ -67,10 +67,18 @@
 
     function authPublish(){
       authService.addPublish()
-        .then(() => {
-          groupService.checkApproval(vm.sentence.group_id).then((notApprovedArr) => {
-            console.log(notApprovedArr);
-          })
+        .then((response) => {
+          if(response.status === "connected"){
+            groupService.addApproval(vm.sentence.group_id).then(()=>{
+              groupService.checkApproval(vm.sentence.group_id).then(notApprovedArr => {
+                if(notApprovedArr.length > 0){
+                  console.log("we'll deal with this condition later, but it should update the list of users who have not approved the app visually on the html");
+                } else {
+                  vm.pickTheWinner()
+                }
+              })
+            })
+          }
         })
     }
 
@@ -82,6 +90,18 @@
 
     function getPic(uid){
       return vm.group.members[uid].prof_picture
+    }
+
+    function pickTheWinner(){
+      groupService.getMembers(vm.sentence.group_id).then(members => {
+        let winner = members[Math.floor(Math.random() * members.length)]
+        if(winner.fbid === vm.me.fbid){
+          authService.publishSentence(vm.sentence, winner).then(res => {
+            vm.winnerName = winner.name
+            vm.postLink = res
+          })
+        }
+      })
     }
 
     function open(pos) {

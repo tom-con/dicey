@@ -41,4 +41,16 @@ router.post('/', function(req, res, next) {
     })
 });
 
+router.patch('/:id', function(req, res, next) {
+  let groupID = req.params.id
+  let userID = req.cookies.user
+  knex('users_groups')
+    .where('group_id', groupID)
+    .where('user_fbid', userID)
+    .update({is_approved: true}, '*')
+    .then(user => {
+      res.send(user[0])
+    })
+})
+
 module.exports = router;
