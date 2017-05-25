@@ -33,7 +33,7 @@ router.patch('/:id', function(req, res, next) {
   let user = req.cookies.user
   knex('words')
     .where('id', req.params.id)
-    .update({text: req.body.text, author_fbid: user}, '*')
+    .update({text: req.body.text, author_fbid: user, updated_at: req.body.updated_at}, '*')
     .then(word => {
       res.send(word[0])
     })
