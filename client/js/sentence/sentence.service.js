@@ -65,7 +65,8 @@
       sentence.current_turn.splice(0, 1)
       return $http.patch(`/api/sentences/${sentence.id}`, {current_turn: switchJSON(sentence.current_turn)}).then(() => {
         return $http.patch(`/api/words/${oldWord.id}`, {
-            text: word
+            text: word,
+            updated_at : new Date()
           })
           .then(newWord => newWord.data)
       })
