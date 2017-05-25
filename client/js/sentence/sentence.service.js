@@ -61,7 +61,8 @@
     }
 
     function updateSentence(word, oldWord, sentence) {
-      let author_fbid = sentence.current_turn.splice(0, 1)[0]
+      let author_fbid = sentence.current_turn[0]
+      sentence.current_turn.splice(0, 1)
       return $http.patch(`/api/sentences/${sentence.id}`, {current_turn: switchJSON(sentence.current_turn)}).then(() => {
         return $http.patch(`/api/words/${oldWord.id}`, {
             text: word
