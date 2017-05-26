@@ -26,7 +26,7 @@
       vm.turnsTime = true
       vm.notAllApproved = false
       getSentence()
-      // setTimeout(function(){ $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true}) }, 2000);
+
     }
 
     function getSentence() {
@@ -103,6 +103,7 @@
     function getActivity(sentence) {
       sentenceService.getActivity(sentence).then(activity_feed => {
         vm.activity_feed = activity_feed
+        setTimeout(function(){ $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true}) }, 10000);
       })
     }
 
@@ -128,14 +129,14 @@
         })
         .then(winner => {
           return new Promise(function(resolve, reject){
-            if (winner === vm.me.fbid) {
-              authService.publishSentence(vm.sentence, winner).then(res => {
+            // if (winner === vm.me.fbid) {
+              authService.publishSentence(vm.sentence, vm.me.fbid).then(res => {
                 sentenceService.setUrl(vm.sentence, res)
                 res ? resolve(true) : reject(false)
               })
-            } else {
-              resolve(true)
-            }
+            // } else {
+            //   resolve(true)
+            // }
           })
         }).then(() => {
           $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true})
