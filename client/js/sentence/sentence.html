@@ -42,7 +42,7 @@
   <div ng-if="$ctrl.activity_feed" class="row">
     <p class="col s10 offset-s1">Recent activity</p>
     <div class="col s10 offset-s1 group-box">
-      <p ng-repeat="activity in $ctrl.activity_feed"> <span class="gradient-text-full">{{activity.user.name}}</span> added the word <span class="gradient-text-full-teal">'{{activity.text}}'</span> at <span am-time-ago="activity.updated_at"></span></p>
+      <p ng-repeat="activity in $ctrl.activity_feed"> <span class="gradient-text-full">{{activity.user.name}}</span> added the word <span class="gradient-text-full-teal">'{{activity.text}}'</span> <span am-time-ago="activity.updated_at"></span></p>
     </div>
   </div>
 
