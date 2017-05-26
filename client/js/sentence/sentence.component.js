@@ -103,7 +103,6 @@
     function getActivity(sentence) {
       sentenceService.getActivity(sentence).then(activity_feed => {
         vm.activity_feed = activity_feed
-        setTimeout(function(){ $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true}) }, 10000);
       })
     }
 
