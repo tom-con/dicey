@@ -39,7 +39,9 @@
       }
 
       authService.getFriends().then(res => {
+        console.log("here");
         Promise.all(res.map(person => authService.getUserInfo(person.id))).then(people => {
+            console.log("fixed it");
           $scope.$apply(function(){
             vm.showFriends = true
             vm.friendsList = [...people]

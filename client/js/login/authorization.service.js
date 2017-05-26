@@ -91,7 +91,8 @@
           getUserPicture(fbid).then(prof_pic => {
             user.prof_picture = prof_pic
             loginService.updateUser(user).then(usr => {
-              usr ? resolve(usr) : reject(usr)
+              console.log(usr);
+              usr ? resolve(usr) : resolve(user)
             })
           })
         })

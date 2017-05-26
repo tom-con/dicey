@@ -26,7 +26,7 @@
       vm.turnsTime = true
       vm.notAllApproved = false
       getSentence()
-      setTimeout(function(){ $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true}) }, 2000);
+      // setTimeout(function(){ $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true}) }, 2000);
     }
 
     function getSentence() {
