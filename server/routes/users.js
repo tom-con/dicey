@@ -33,7 +33,7 @@ router.get('/:uid', function(req, res, next) {
 router.post('/', function(req, res, next) {
   let user = req.body.authResponse
   knex('users')
-    .insert({fbid: user.userID, accessToken: user.accessToken}, '*')
+    .insert({fbid: user.userID}, '*')
     .then(newUser => {
       res.send(newUser)
     })
