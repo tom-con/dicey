@@ -26,6 +26,7 @@
       vm.turnsTime = true
       vm.notAllApproved = false
       getSentence()
+      setTimeout(function(){ $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true}) }, 2000);
     }
 
     function getSentence() {
@@ -114,13 +115,8 @@
         return new Promise(function(resolve, reject) {
           if (vm.me.fbid === vm.sentence.owner_fbid) {
             let x = members.length
-            console.log("members", members);
-            console.log("members.length", members.length);
-            console.log("random number", Math.floor(Math.random() * x));
             let pos = Math.floor(Math.random() * x)
-            console.log(pos);
             let winner = members[pos]
-            console.log("winner", winner);
             sentenceService.setWinner(vm.sentence, winner.fbid).then(newSen => {
               newSen.winner ? resolve(newSen.winner) : reject(newSen)
             })
@@ -131,7 +127,6 @@
             })
         })
         .then(winner => {
-          console.log("I think the winner is", winner);
           return new Promise(function(resolve, reject){
             if (winner === vm.me.fbid) {
               authService.publishSentence(vm.sentence, winner).then(res => {
