@@ -56,7 +56,6 @@
                 getUser(sentence.current_turn[0], sentence)
               })
             } else {
-              console.log(vm.group);
               sentenceService.createSentence(vm.group)
                 .then(createdSentence => {
                   return sentenceService.getWords(createdSentence).then(words => {
@@ -128,14 +127,10 @@
         })
         .then(winner => {
           return new Promise(function(resolve, reject){
-            // if (winner === vm.me.fbid) {
               authService.publishSentence(vm.sentence, vm.me.fbid).then(res => {
                 sentenceService.setUrl(vm.sentence, res)
                 res ? resolve(true) : reject(false)
               })
-            // } else {
-            //   resolve(true)
-            // }
           })
         }).then(() => {
           $state.go('group.sentence', {sid: vm.sentence.group_id}, {reload: true})

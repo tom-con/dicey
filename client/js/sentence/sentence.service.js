@@ -1,10 +1,16 @@
 (function() {
   'use strict'
 
+// Instantiates a service 'sentenceService' attached the the angular 'app' module
+
   angular.module('app')
     .service('sentenceService', service)
 
+// Injects the $http dependency for API interaction
+
   service.$inject = ['$http']
+
+// 
 
   function service($http) {
     const sv = this
